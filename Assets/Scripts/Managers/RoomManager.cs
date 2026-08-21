@@ -59,7 +59,6 @@ public class RoomManager : MonoBehaviour
         //Debug test functions
         if (newRoomDebug.WasPressedThisFrame())
         {
-            
             NewRoom();
         }
 

@@ -484,14 +484,6 @@ MonoBehaviour:
       m_Groups: 
       m_Action: killDebug
       m_Flags: 0
-    - m_Name: 
-      m_Id: 5583d634-04ca-49b3-91c4-b7a1fa9867ca
-      m_Path: <Keyboard>/#(A)
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: killDebug
-      m_Flags: 0
     m_Flags: 0
     m_Priority: 0
   newRoomDebug:
