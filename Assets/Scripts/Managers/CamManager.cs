@@ -7,7 +7,7 @@ public class CamManager : MonoBehaviour
     public float smoothTime = 0.3f;    // Damping time
     private Vector3 velocity = Vector3.zero;
     Vector3 targetTransform;
-    //public float yOffset = 1;
+    public float xOffset = -18;
 
 
     // NEW: stop following flag
@@ -23,7 +23,7 @@ public class CamManager : MonoBehaviour
 
         // Smooth follow
         transform.position = Vector3.SmoothDamp(transform.position, 
-            new Vector3(targetTransform.x - 18, transform.position.y, targetTransform.z), ref velocity, smoothTime);
+            new Vector3(targetTransform.x + xOffset, transform.position.y, targetTransform.z), ref velocity, smoothTime);
 
         // if (transform.position.y + (GetComponent<Camera>().orthographicSize / 2) > maxHeight || camLock)
         // {
