@@ -47,7 +47,7 @@ public class RoomManager : MonoBehaviour
         player.transform.position = GameObject.Find("PlayerSpawnPoint").transform.position;
         Destroy(GameObject.Find("PlayerSpawnPoint"));
 
-        cam.transform.position = new Vector3 (player.transform.position.x - 7, cam.transform.localPosition.y, player.transform.position.z - 9);
+        cam.transform.position = new Vector3 (player.transform.position.x - 7, cam.transform.localPosition.y, player.transform.position.z);
 
         enemiesLeft = GameObject.FindGameObjectsWithTag("Enemy").Length;
 
