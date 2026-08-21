@@ -14,12 +14,13 @@ public class PlayerController : MonoBehaviour, InputSystem_Actions.IPlayerAction
 
     private float _gravity = -9.18f;
     private bool _isGrounded;
-
     Vector3 _direction;
-
     public CharacterController controller;
 
+    [Header("Animation")]
+    public Animator animator;
 
+    // INPUT EVENTS
     public void OnMove(InputAction.CallbackContext context)
     {
         Vector2 readVector = context.ReadValue<Vector2>();
@@ -27,6 +28,10 @@ public class PlayerController : MonoBehaviour, InputSystem_Actions.IPlayerAction
         _direction = toConvert;
     }
 
+    void Awake()
+    {
+        
+    }
     void Start()
     {
          _currentSpeed = maxSpeed;
@@ -34,7 +39,13 @@ public class PlayerController : MonoBehaviour, InputSystem_Actions.IPlayerAction
 
     void Update()
     {   
-        //velocity
+        Movement();
+        
+    }
+
+    void Movement()
+    {
+        //speed up and slow down
         if (_direction == Vector3.zero && _currentSpeed > 0)
         {
             _currentSpeed -= decceleration * Time.deltaTime;
@@ -59,8 +70,29 @@ public class PlayerController : MonoBehaviour, InputSystem_Actions.IPlayerAction
             _velocity.y = _gravity * Time.deltaTime;
         }
         
-        //move player
+        //put it all together
         controller.Move(_direction * _currentSpeed * Time.deltaTime + _velocity);
-        Debug.Log(_currentSpeed);
+
+        //animation
+        if (_direction.z > 0)
+        {
+            animator.Play("Walk_Left");
+        }
+        else if (_direction.z < 0)
+        {
+            animator.Play("Walk_Right");
+        }
+        else if (_direction.x > 0)
+        {
+            animator.Play("Walk_Up");
+        }
+        else if (_direction.x < 0)
+        {
+            animator.Play("Walk_Down");
+        }
+        else
+        {
+            animator.Play("Idle");
+        }
     }
 }
