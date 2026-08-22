@@ -2,19 +2,27 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Diagnostics.Tracing;
+using Unity.VisualScripting;
 
 public class WeaponSelectionPROTO : MonoBehaviour
 {
     public GameObject _mainMenu;
+    public GameObject player;
+    public GameObject swordPrefab;
+    public GameObject staffPrefab;
+    public GameObject macePrefab;
+
     public Button _swordBtn, _spearBtn, _maceBtn, _quit;
+    //public string sword, spear, mace;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         _mainMenu.SetActive(true);
+        Time.timeScale = 0;
 
-        _swordBtn.onClick.AddListener(WeaponChosen);
-        _spearBtn.onClick.AddListener(WeaponChosen);
-        _maceBtn.onClick.AddListener(WeaponChosen);
+        //_swordBtn.onClick.AddListener(WeaponChosen);
+        //_spearBtn.onClick.AddListener(WeaponChosen);
+        //_maceBtn.onClick.AddListener(WeaponChosen);
 
     }
 
@@ -32,15 +40,29 @@ public class WeaponSelectionPROTO : MonoBehaviour
         #endif
     }
 
-    public void WeaponChosen()
+    public void WeaponChosen(GameObject weaponPrefab)
     {
+        // Source - https://stackoverflow.com/a/70591393
+// Posted by Saif
+// Retrieved 2026-08-22, License - CC BY-SA 4.0
+
+        GameObject childGameObject = Instantiate(weaponPrefab, player.transform, true);
+        childGameObject.name = "Weapon";
+
         Debug.Log("weapon selected");
-        _mainMenu.SetActive(false);
-        /* if this button selected
-            do this (change stats yadda yadda)
-            
-        if other button selected 
-            do this yeayeah
-        */
+        Time.timeScale = 1;
+    }
+
+    public void Sword()
+    {
+        //sword stats
+    }
+    public void Spear()
+    {
+        //spear stats
+    }
+    public void Mace()
+    {
+        //mace stats
     }
 }
