@@ -5,8 +5,10 @@ using UnityEngine.InputSystem;
 public class RoomManager : MonoBehaviour
 {
     public GameObject player;
+    public GameObject playerSpawnPoint;
     public GameObject currentDoor;
     public GameObject cam;
+    public GameObject camSpawnPoint;
     public List<GameObject> rooms;
     public int enemiesLeft;
     private int roomOffset = 0;
@@ -17,8 +19,8 @@ public class RoomManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        currentDoor = GameObject.Find("Door");
-        Destroy(GameObject.Find("PlayerSpawnPoint")); // destroy it when ur done with it
+        if (camSpawnPoint != null)
+            cam.transform.position = camSpawnPoint.transform.position;
         killEnemyDebug.Enable();
         newRoomDebug.Enable();
     }
@@ -30,28 +32,54 @@ public class RoomManager : MonoBehaviour
 
         if(--enemiesLeft <= 0)
         {
-            if(currentDoor == null)
-                currentDoor = GameObject.Find("Door");
 
-            currentDoor.GetComponent<MeshRenderer>().enabled = false;
+            if (currentDoor != null)
+                currentDoor.GetComponent<CurrentDoor>().UnlockDoor();
         }
     }
 
     // Randomly choose new room, place player at spawn, move camera, remove spawn marker, count enemies, destroy current door, find new door 
     public void NewRoom()
     {
-        Destroy(GameObject.Find("Door"));
 
-        Instantiate(rooms[Random.Range(0, rooms.Count)], new Vector3(roomOffset += 60, 0, 0), Quaternion.identity);
-   
-        player.transform.position = GameObject.Find("PlayerSpawnPoint").transform.position;
-        Destroy(GameObject.Find("PlayerSpawnPoint"));
+        GameObject newRoom = Instantiate(rooms[Random.Range(0, rooms.Count)], new Vector3(roomOffset += 60, 0, 0), Quaternion.identity);
+        camSpawnPoint = newRoom.GetComponentInChildren<CamSpawnPoint>()?.gameObject;
+        playerSpawnPoint = newRoom.GetComponentInChildren<PlayerSpawnPoint>(true)?.gameObject;
+        currentDoor = newRoom.GetComponentInChildren<CurrentDoor>(true)?.gameObject;
 
-        cam.transform.position = new Vector3 (player.transform.position.x - 7, cam.transform.localPosition.y, player.transform.position.z - 9);
+
+        if (playerSpawnPoint == null)
+        {
+            Debug.LogError($"Room {newRoom.name} has no PlayerSpawnPoint.");
+            return;
+        }
+
+        CharacterController playerController = player.GetComponent<CharacterController>();
+        if (playerController != null)
+            playerController.enabled = false;
+
+        player.transform.position = playerSpawnPoint.transform.position;
+        playerSpawnPoint.SetActive(false);
+        Physics.SyncTransforms();
+
+        if (playerController != null)
+            playerController.enabled = true;
+        
+        // Big room free cam
+        if(camSpawnPoint == null)
+        {
+            cam.transform.position = new Vector3 (player.transform.position.x, cam.transform.position.y, player.transform.position.z);
+            cam.GetComponent<CamManager>().stopFollowing = false;
+        }
+        // Small room locked cam
+        else
+        {
+            cam.transform.position = camSpawnPoint.transform.position;
+            cam.GetComponent<CamManager>().stopFollowing = true;
+        }
 
         enemiesLeft = GameObject.FindGameObjectsWithTag("Enemy").Length;
 
-        currentDoor = GameObject.Find("Door");
     }
 
     public void Update()
@@ -64,7 +92,7 @@ public class RoomManager : MonoBehaviour
 
         if (killEnemyDebug.WasPressedThisFrame())
         {
-            Debug.Log("Killed enemy");
+            //Debug.Log("Killed enemy");
             KillEnemy();
         }
     }
