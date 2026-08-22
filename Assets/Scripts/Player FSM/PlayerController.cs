@@ -75,6 +75,27 @@ public class PlayerController : MonoBehaviour, InputSystem_Actions.IPlayerAction
         controller.Move(_direction * _currentSpeed * Time.deltaTime + _velocity);
     }
 
+        // //animation
+        // if (_direction.z > 0)
+        // {
+        //     animator.Play("Walk_Left");
+        // }
+        // else if (_direction.z < 0)
+        // {
+        //     animator.Play("Walk_Right");
+        // }
+        // else if (_direction.x > 0)
+        // {
+        //     animator.Play("Walk_Up");
+        // }
+        // else if (_direction.x < 0)
+        // {
+        //     animator.Play("Walk_Down");
+        // }
+        // else
+        // {
+        //     animator.Play("Idle");
+        // }
     public void Attack()
     {
         

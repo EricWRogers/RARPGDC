@@ -112,18 +112,9 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.6234128, g: 0.836478, b: 0.6507108, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_SpriteSortPoint: 0
---- !u!1 &4688204054412129546
-GameObject:
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &7810660775003392384
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -311,64 +302,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SimplePlayer
   speed: 10
   controller: {fileID: 7715256816439548438}
-  maxHealth: 10
-  health: 0
-  weapon: {fileID: 6734731139267787606}
-  weaponScript: {fileID: 734602749455107221}
-  minusHP:
-    m_Name: Minus HP
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: ed5848c6-0a53-4250-b2b7-e0a71a5e02c7
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 0ca9993a-4cae-44f7-8113-0359b3628ff1
-      m_Path: <Keyboard>/#(-)
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Minus HP
-      m_Flags: 0
-    m_Flags: 0
-    m_Priority: 0
-  plusHP:
-    m_Name: Plus HP
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: f58a7dac-4f08-4e80-84a2-6c0ce120fd6b
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 3baf7906-c1bf-43fa-a9f2-1704af8e997f
-      m_Path: <Keyboard>/#(+)
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Plus HP
-      m_Flags: 0
-    m_Flags: 0
-    m_Priority: 0
-  instantDeath:
-    m_Name: Instant Death
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 63da5863-e45d-4658-be2a-70de7b1949a1
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 0315b704-b3a9-4355-889d-040f1a9b4d8e
-      m_Path: <Keyboard>/#(K)
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Instant Death
-      m_Flags: 0
-    m_Flags: 0
-    m_Priority: 0
+  animator: {fileID: 0}
 --- !u!114 &4769269466461886191
 MonoBehaviour:
   m_ObjectHideFlags: 0
