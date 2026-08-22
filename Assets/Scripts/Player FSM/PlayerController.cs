@@ -96,5 +96,8 @@ public class PlayerController : MonoBehaviour, InputSystem_Actions.IPlayerAction
         // {
         //     animator.Play("Idle");
         // }
+    public void Attack()
+    {
+        
     }
 }
