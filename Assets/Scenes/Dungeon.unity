@@ -257,22 +257,6 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
---- !u!114 &330585548
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 330585543}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af44a5c315f61874cb845a21ddafcf1c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CamManager
-  target: {fileID: 1371343800}
-  type: 0
-  smoothTime: 0.3
-  stopFollowing: 0
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -459,6 +443,7 @@ GameObject:
   m_Component:
   - component: {fileID: 876457063}
   - component: {fileID: 876457064}
+  - component: {fileID: 876457065}
   m_Layer: 0
   m_Name: DemonMadotsukiSpriteSheet_7
   m_TagString: Untagged
@@ -540,6 +525,33 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!95 &876457065
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 876457062}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c153a854f5a1a5347890a82e71c7b164, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &991413819 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4970750734495488242, guid: 8a7bbd9eb8e297e4794b52966935c303, type: 3}
+  m_PrefabInstance: {fileID: 1398914019}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &994284489
 GameObject:
   m_ObjectHideFlags: 0
@@ -569,7 +581,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5529385f39732d545b5731f2f056d882, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  player: {fileID: 1371343800}
+  player: {fileID: 991413819}
   currentDoor: {fileID: 0}
   cam: {fileID: 330585543}
   rooms:
@@ -640,6 +652,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1594807143657051805, guid: 8a7bbd9eb8e297e4794b52966935c303, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 876457065}
+    - target: {fileID: 4372726117883476571, guid: 8a7bbd9eb8e297e4794b52966935c303, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4372726117883476571, guid: 8a7bbd9eb8e297e4794b52966935c303, type: 3}
+      propertyPath: m_CastShadows
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4970750734495488242, guid: 8a7bbd9eb8e297e4794b52966935c303, type: 3}
       propertyPath: m_Name
       value: Player
