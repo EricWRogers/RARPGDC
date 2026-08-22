@@ -272,7 +272,8 @@ MonoBehaviour:
   target: {fileID: 1371343800}
   type: 0
   smoothTime: 0.3
-  stopFollowing: 0
+  xOffset: -18
+  stopFollowing: 1
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -572,6 +573,7 @@ MonoBehaviour:
   player: {fileID: 1371343800}
   currentDoor: {fileID: 0}
   cam: {fileID: 330585543}
+  camSpawnPoint: {fileID: 0}
   rooms:
   - {fileID: 1972487513144767384, guid: e939fda0ec7a1934dbb35def5c96b2ad, type: 3}
   - {fileID: 1219257980228737747, guid: 6676011d6f32662469795e478e0129bf, type: 3}
