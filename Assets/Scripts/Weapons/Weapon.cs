@@ -27,7 +27,7 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    void OwGizmosSelected()
+    void OnDrawGizmosSelected()
     {
         if (attackPoint == null)
         {

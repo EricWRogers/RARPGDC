@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 330585545}
   - component: {fileID: 330585544}
   - component: {fileID: 330585547}
+  - component: {fileID: 330585548}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -268,7 +269,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af44a5c315f61874cb845a21ddafcf1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CamManager
-  target: {fileID: 1371343800}
+  target: {fileID: 991413819}
   type: 0
   smoothTime: 0.3
   xOffset: -18
@@ -595,7 +596,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5529385f39732d545b5731f2f056d882, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  player: {fileID: 1371343800}
+  player: {fileID: 0}
   playerSpawnPoint: {fileID: 0}
   currentDoor: {fileID: 1928289941}
   cam: {fileID: 330585543}
@@ -714,11 +715,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a7bbd9eb8e297e4794b52966935c303, type: 3}
---- !u!4 &1727665643 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7064713551955821967, guid: 8a7bbd9eb8e297e4794b52966935c303, type: 3}
-  m_PrefabInstance: {fileID: 1398914019}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1928289941 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6226028862184488163, guid: e939fda0ec7a1934dbb35def5c96b2ad, type: 3}
@@ -800,4 +796,3 @@ SceneRoots:
   - {fileID: 2134693453812777509}
   - {fileID: 1398914019}
   - {fileID: 614476929}
-  - {fileID: 1518954365}
