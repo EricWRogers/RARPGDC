@@ -34,7 +34,7 @@ public class RoomManager : MonoBehaviour
         {
 
             if (currentDoor != null)
-                currentDoor.GetComponent<MeshRenderer>().enabled = false;
+                currentDoor.GetComponent<CurrentDoor>().UnlockDoor();
         }
     }
 

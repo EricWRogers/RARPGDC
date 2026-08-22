@@ -571,7 +571,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   player: {fileID: 1371343800}
-  currentDoor: {fileID: 0}
+  playerSpawnPoint: {fileID: 0}
+  currentDoor: {fileID: 1928289941}
   cam: {fileID: 330585543}
   camSpawnPoint: {fileID: 0}
   rooms:
@@ -813,6 +814,11 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 7064713551955821967, guid: 8a7bbd9eb8e297e4794b52966935c303, type: 3}
   m_PrefabInstance: {fileID: 1398914019}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1928289941 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6226028862184488163, guid: e939fda0ec7a1934dbb35def5c96b2ad, type: 3}
+  m_PrefabInstance: {fileID: 2134693453812777509}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2134693453812777509
 PrefabInstance:
