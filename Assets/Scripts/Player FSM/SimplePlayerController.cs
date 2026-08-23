@@ -14,8 +14,9 @@ public class SimplePlayerController: MonoBehaviour, InputSystem_Actions.IPlayerA
     public CharacterController controller;
 
     [Header("Health")]
-    public int maxHealth;
-    [SerializeField] private int health;
+    public int maxHealth {get; private set;} = 10;
+     public int health;
+     public GameObject GameOverScreen;
     [Header("Combat")]
     public GameObject weapon;
     public Weapon weaponScript;
@@ -58,6 +59,8 @@ public class SimplePlayerController: MonoBehaviour, InputSystem_Actions.IPlayerA
         minusHP.Enable();
         plusHP.Enable();
         instantDeath.Enable();
+
+        GameOverScreen.SetActive(false);
     }
 
     void Update()
@@ -129,5 +132,6 @@ public class SimplePlayerController: MonoBehaviour, InputSystem_Actions.IPlayerA
         speed = 0;
         sprite.color = Color.red;
         //reset game
+        GameOverScreen.SetActive(true);
     }
 }
