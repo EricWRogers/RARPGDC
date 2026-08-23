@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
-public class SimplePlayer : MonoBehaviour, InputSystem_Actions.IPlayerActions
+public class SimplePlayerController: MonoBehaviour, InputSystem_Actions.IPlayerActions
 {
     [Header("Speed and Acceleration")]
     public float speed;
@@ -36,7 +36,15 @@ public class SimplePlayer : MonoBehaviour, InputSystem_Actions.IPlayerActions
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-        weaponScript.Attack();
+        if (weapon != null && weaponScript != null)
+        {
+            weaponScript.Attack();
+        }
+        else
+        {
+            return;
+        }
+        
     }
 
     void Awake()
@@ -77,7 +85,6 @@ public class SimplePlayer : MonoBehaviour, InputSystem_Actions.IPlayerActions
         if (_direction.z > 0)
         {
             weapon.transform.rotation = Quaternion.Euler(0, -180, 0);
-            Debug.Log("Left??");
         }
         if (_direction.z < 0)
         {
