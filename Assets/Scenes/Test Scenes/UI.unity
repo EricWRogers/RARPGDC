@@ -240,17 +240,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31cf2df54f7018a4e82b23fcf7fc4e5c, type: 3}
---- !u!114 &177290043 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1554907141937755527, guid: 31cf2df54f7018a4e82b23fcf7fc4e5c, type: 3}
-  m_PrefabInstance: {fileID: 51610221}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c8bc664926ac14458d1cec42870cce5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WeaponSelectionPROTO
 --- !u!1 &216840866
 GameObject:
   m_ObjectHideFlags: 0
@@ -596,10 +585,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameOverScreen
       objectReference: {fileID: 0}
-    - target: {fileID: 7100469429178411216, guid: 74917d0564ad3ce4e91115dfab516e1c, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 177290043}
     - target: {fileID: 8054056070415218329, guid: 74917d0564ad3ce4e91115dfab516e1c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -653,13 +638,37 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1275373975524739031, guid: 2219246798c7c0b4d979da1d00d71e18, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1275373975524739031, guid: 2219246798c7c0b4d979da1d00d71e18, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1275373975524739031, guid: 2219246798c7c0b4d979da1d00d71e18, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1275373975524739031, guid: 2219246798c7c0b4d979da1d00d71e18, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1275373975524739031, guid: 2219246798c7c0b4d979da1d00d71e18, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 275
+      objectReference: {fileID: 0}
+    - target: {fileID: 1275373975524739031, guid: 2219246798c7c0b4d979da1d00d71e18, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -50
+      objectReference: {fileID: 0}
     - target: {fileID: 1666987149539087192, guid: 2219246798c7c0b4d979da1d00d71e18, type: 3}
       propertyPath: m_Name
       value: HealthBar
       objectReference: {fileID: 0}
     - target: {fileID: 1666987149539087192, guid: 2219246798c7c0b4d979da1d00d71e18, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2036493493655411052, guid: 2219246798c7c0b4d979da1d00d71e18, type: 3}
       propertyPath: m_AnchorMax.x
@@ -668,6 +677,10 @@ PrefabInstance:
     - target: {fileID: 2036493493655411052, guid: 2219246798c7c0b4d979da1d00d71e18, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4414661016718831198, guid: 2219246798c7c0b4d979da1d00d71e18, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6151037051916806795, guid: 2219246798c7c0b4d979da1d00d71e18, type: 3}
       propertyPath: m_LocalPosition.x
