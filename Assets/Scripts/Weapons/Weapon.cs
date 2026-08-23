@@ -23,7 +23,7 @@ public class Weapon : MonoBehaviour
         //apply damage 
         foreach(Collider enemy in hitEnemies)
         {
-            Debug.Log("Hit " + enemy.name);
+            Debug.Log("Hit " + enemy.name + " for " + damage + " damage.");
         }
     }
 

@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 5476444235149002387}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.049000025, z: -0.8360002}
+  m_LocalPosition: {x: 0, y: 0.493, z: -0.965}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -41,7 +41,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6797045700792680045}
   - component: {fileID: 1459931014916999134}
-  - component: {fileID: 4092639123543419268}
   m_Layer: 0
   m_Name: Staff
   m_TagString: Untagged
@@ -83,22 +82,10 @@ MonoBehaviour:
   rechageSpeed: 0
   damage: 0
   attackPoint: {fileID: 1789462839415898661}
-  attackRange: 0.5
+  attackRange: 0.8
   enemyLayers:
     serializedVersion: 2
     m_Bits: 8
---- !u!114 &4092639123543419268
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7229139403379512753}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d9e211f648a5a84f9e0f048d8e65bf5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ShortSword
 --- !u!1 &8975956400627894158
 GameObject:
   m_ObjectHideFlags: 0

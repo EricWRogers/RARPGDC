@@ -963,6 +963,62 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5202189845998014370, guid: 8a7bbd9eb8e297e4794b52966935c303, type: 3}
+      propertyPath: weapon
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5202189845998014370, guid: 8a7bbd9eb8e297e4794b52966935c303, type: 3}
+      propertyPath: weaponScript
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5202189845998014370, guid: 8a7bbd9eb8e297e4794b52966935c303, type: 3}
+      propertyPath: plusHP.m_SingletonActionBindings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5202189845998014370, guid: 8a7bbd9eb8e297e4794b52966935c303, type: 3}
+      propertyPath: minusHP.m_SingletonActionBindings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5202189845998014370, guid: 8a7bbd9eb8e297e4794b52966935c303, type: 3}
+      propertyPath: instantDeath.m_SingletonActionBindings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5202189845998014370, guid: 8a7bbd9eb8e297e4794b52966935c303, type: 3}
+      propertyPath: plusHP.m_SingletonActionBindings.Array.data[0].m_Id
+      value: 3b954b40-e043-4c25-9cae-591fde9a638c
+      objectReference: {fileID: 0}
+    - target: {fileID: 5202189845998014370, guid: 8a7bbd9eb8e297e4794b52966935c303, type: 3}
+      propertyPath: minusHP.m_SingletonActionBindings.Array.data[0].m_Id
+      value: e0ddcaeb-c9d1-4852-879d-6a322ac2abe5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5202189845998014370, guid: 8a7bbd9eb8e297e4794b52966935c303, type: 3}
+      propertyPath: plusHP.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <Keyboard>/#(+)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5202189845998014370, guid: 8a7bbd9eb8e297e4794b52966935c303, type: 3}
+      propertyPath: minusHP.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <Keyboard>/minus
+      objectReference: {fileID: 0}
+    - target: {fileID: 5202189845998014370, guid: 8a7bbd9eb8e297e4794b52966935c303, type: 3}
+      propertyPath: plusHP.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Plus HP
+      objectReference: {fileID: 0}
+    - target: {fileID: 5202189845998014370, guid: 8a7bbd9eb8e297e4794b52966935c303, type: 3}
+      propertyPath: minusHP.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Minus HP
+      objectReference: {fileID: 0}
+    - target: {fileID: 5202189845998014370, guid: 8a7bbd9eb8e297e4794b52966935c303, type: 3}
+      propertyPath: instantDeath.m_SingletonActionBindings.Array.data[0].m_Id
+      value: c0c4a750-022d-495b-a1fc-6f06d9d97917
+      objectReference: {fileID: 0}
+    - target: {fileID: 5202189845998014370, guid: 8a7bbd9eb8e297e4794b52966935c303, type: 3}
+      propertyPath: instantDeath.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <Keyboard>/l
+      objectReference: {fileID: 0}
+    - target: {fileID: 5202189845998014370, guid: 8a7bbd9eb8e297e4794b52966935c303, type: 3}
+      propertyPath: instantDeath.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Instant Death
+      objectReference: {fileID: 0}
     - target: {fileID: 7064713551955821967, guid: 8a7bbd9eb8e297e4794b52966935c303, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

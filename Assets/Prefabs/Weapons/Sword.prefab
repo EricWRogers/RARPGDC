@@ -101,7 +101,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5233671866424565491}
   - component: {fileID: 8459995281885363676}
-  - component: {fileID: 625247838887196431}
   m_Layer: 0
   m_Name: Sword
   m_TagString: Untagged
@@ -143,22 +142,10 @@ MonoBehaviour:
   rechageSpeed: 0
   damage: 0
   attackPoint: {fileID: 9111476172998316591}
-  attackRange: 0.5
+  attackRange: 0.8
   enemyLayers:
     serializedVersion: 2
     m_Bits: 8
---- !u!114 &625247838887196431
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2459167594139910687}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d9e211f648a5a84f9e0f048d8e65bf5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ShortSword
 --- !u!1 &6715280811372475390
 GameObject:
   m_ObjectHideFlags: 0
@@ -184,7 +171,7 @@ Transform:
   m_GameObject: {fileID: 6715280811372475390}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.049000025, z: -0.8360002}
+  m_LocalPosition: {x: 0, y: 0.19, z: -0.857}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

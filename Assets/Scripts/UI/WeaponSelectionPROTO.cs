@@ -35,12 +35,12 @@ public class WeaponSelectionPROTO : MonoBehaviour
 
     public void WeaponChosen(GameObject weaponPrefab)
     {
-        GameObject childGameObject = Instantiate(weaponPrefab, player.transform, false);
-        childGameObject.name = "Weapon";
+        GameObject childWeapon = Instantiate(weaponPrefab, player.transform, false);
+        childWeapon.name = "Weapon";
 
         playerScript = player.GetComponent<SimplePlayerController>();
-        playerScript.weapon = weaponPrefab;
-        playerScript.weaponScript = weaponPrefab.GetComponent<Weapon>();
+        playerScript.weapon = childWeapon;
+        playerScript.weaponScript = childWeapon.GetComponent<Weapon>();
 
 
         Debug.Log("weapon selected");

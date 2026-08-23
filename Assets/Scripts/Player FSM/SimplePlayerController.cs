@@ -84,11 +84,11 @@ public class SimplePlayerController: MonoBehaviour, InputSystem_Actions.IPlayerA
         //animation
         if (_direction.z > 0)
         {
-            weapon.transform.rotation = Quaternion.Euler(0, -180, 0);
+            weapon.transform.rotation = Quaternion.Euler(0, 180, 0);
         }
         if (_direction.z < 0)
         {
-            weapon.transform.rotation = Quaternion.Euler(0, -0, 0);
+            weapon.transform.rotation = Quaternion.Euler(0, 0, 0);
         }
 
         //gravity
