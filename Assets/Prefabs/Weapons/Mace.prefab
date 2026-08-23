@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 2469216370245616173}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.24, z: -0.754}
+  m_LocalPosition: {x: 0, y: 0.24, z: -0.206}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -77,15 +77,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d0285c2fef4d4046b17894c8da9ecf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Weapon
-  attackSpeed: 0
-  chargeSpeed: 0
-  rechageSpeed: 0
-  damage: 0
+  damage: 8
   attackPoint: {fileID: 4395035522525585739}
   attackRange: 0.8
   enemyLayers:
     serializedVersion: 2
     m_Bits: 8
+  sprite: {fileID: 7423773341503045492}
+  animator: {fileID: 0}
 --- !u!1 &7423773341503045492
 GameObject:
   m_ObjectHideFlags: 0
@@ -111,13 +110,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7423773341503045492}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.17108573, y: -0.68609744, z: 0.049346898, w: 0.70538276}
-  m_LocalPosition: {x: -0.162, y: 0.014, z: -0.569}
+  m_LocalRotation: {x: -0.16888292, y: 0.686643, z: -0.1688829, w: 0.686643}
+  m_LocalPosition: {x: 0.00000014124244, y: 0.00000005606435, z: 0.00000011920929}
   m_LocalScale: {x: 0.18638243, y: 0.6631097, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8649263396580990745}
-  m_LocalEulerAnglesHint: {x: -10, y: -90, z: 18.004}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: -27.636}
 --- !u!212 &2573209300849823135
 SpriteRenderer:
   serializedVersion: 2

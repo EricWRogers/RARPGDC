@@ -19,6 +19,8 @@ public class SimplePlayerController: MonoBehaviour, InputSystem_Actions.IPlayerA
     [Header("Combat")]
     public GameObject weapon;
     public Weapon weaponScript;
+    [Header("Appearance")]
+    public SpriteRenderer sprite;
 
 
     // INPUT EVENTS //
@@ -60,6 +62,11 @@ public class SimplePlayerController: MonoBehaviour, InputSystem_Actions.IPlayerA
 
     void Update()
     {   
+        if (health == 0)
+        {
+            Die();
+        }
+
         //cheat keybinds
         if (minusHP.WasPressedThisFrame())
         {
@@ -119,6 +126,8 @@ public class SimplePlayerController: MonoBehaviour, InputSystem_Actions.IPlayerA
 
     public void Die()
     {
-        
+        speed = 0;
+        sprite.color = Color.red;
+        //reset game
     }
 }
