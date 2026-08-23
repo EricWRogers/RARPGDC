@@ -3,24 +3,30 @@ using UnityEngine;
 public class ChaseState : MonsterIState
 {
     private EnemyAI enemy;
-    private float lostTimer; // Time since losing sight
+    private float lostTimer; 
 
     public void OnEnter(EnemyAI context)
     {
-        enemy = context;
-        lostTimer = 0f; // We reuse instances, so always reset on entry
+        this.enemy = context;
+        lostTimer = 0f; 
         enemy.SetStateColor(Color.red);
     }
 
     public void OnUpdate()
     {
+        if (enemy.AttackTarget())
+        {
+            enemy.ChangeState(enemy.Attack);
+        }
+
+
+        
         if (enemy.CanSeePlayer())
         {
-            lostTimer = 0f; // Reset the grace while the player is visible
+            lostTimer = 0f; 
         }
         else
         {
-            // Don't give up the instant you lose sight. Hang on for 2 seconds
             lostTimer += Time.deltaTime;
             if (lostTimer >= 2f)
             {
@@ -29,7 +35,6 @@ public class ChaseState : MonsterIState
             }
         }
 
-        // Head for the last seen position (keep running during the grace period too)
         enemy.transform.position = Vector3.MoveTowards(
             enemy.transform.position, enemy.LastKnownPosition,
             enemy.chaseSpeed * Time.deltaTime);
