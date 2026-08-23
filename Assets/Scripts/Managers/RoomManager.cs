@@ -19,6 +19,9 @@ public class RoomManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        if(player == null)
+            player = GameObject.FindGameObjectWithTag("Player");
+
         if (camSpawnPoint != null)
             cam.transform.position = camSpawnPoint.transform.position;
         killEnemyDebug.Enable();
