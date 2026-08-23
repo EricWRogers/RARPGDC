@@ -3,7 +3,7 @@ using UnityEngine;
 public class EnemyAI : MonoBehaviour
 {
     [Header("Detection settings")]
-    public Transform player;
+    public Transform player { get; private set; }
     public float sightRange = 8f;      // How far it can notice you
     public LayerMask obstacleMask;     // Layer for walls and other occluders
 
@@ -29,6 +29,16 @@ public class EnemyAI : MonoBehaviour
 
     void Awake()
     {
+        GameObject playerGO = GameObject.FindWithTag("Player");
+        if (playerGO != null)
+        {
+            player = playerGO.transform;
+        }
+        else
+        {
+            Debug.LogError($"WHERE IS THE PLAYER??? {gameObject.name} CANT FIND ANYTHING TAGGED PLAYER!");
+        }
+
         Patrol = new PatrolState();
         Chase = new ChaseState();
         Search = new SearchState();
