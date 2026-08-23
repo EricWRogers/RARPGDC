@@ -53,7 +53,9 @@ public class SimplePlayerController: MonoBehaviour, InputSystem_Actions.IPlayerA
     }
     void Start()
     {
-
+        minusHP.Enable();
+        plusHP.Enable();
+        instantDeath.Enable();
     }
 
     void Update()
