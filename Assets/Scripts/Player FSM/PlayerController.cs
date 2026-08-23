@@ -6,7 +6,6 @@ public class PlayerController : MonoBehaviour, InputSystem_Actions.IPlayerAction
 {
     [Header("Speed and Acceleration")]
     [SerializeField] private float maxSpeed = 10f;
-    [SerializeField] private float rotationSpeed = 360f;
     [SerializeField] private float acceleration = 8f;
     [SerializeField] private float decceleration = 10f;
     private float _currentSpeed;
@@ -17,15 +16,17 @@ public class PlayerController : MonoBehaviour, InputSystem_Actions.IPlayerAction
     Vector3 _direction;
     public CharacterController controller;
 
-    [Header("Animation")]
-    public Animator animator;
-
     // INPUT EVENTS
     public void OnMove(InputAction.CallbackContext context)
     {
         Vector2 readVector = context.ReadValue<Vector2>();
         Vector3 toConvert = new Vector3(readVector.y, 0, -readVector.x);
         _direction = toConvert;
+    }
+    
+    public void OnAttack(InputAction.CallbackContext context)
+    {
+        
     }
 
     void Awake()
@@ -72,6 +73,7 @@ public class PlayerController : MonoBehaviour, InputSystem_Actions.IPlayerAction
         
         //put it all together
         controller.Move(_direction * _currentSpeed * Time.deltaTime + _velocity);
+    }
 
         // //animation
         // if (_direction.z > 0)
@@ -94,5 +96,8 @@ public class PlayerController : MonoBehaviour, InputSystem_Actions.IPlayerAction
         // {
         //     animator.Play("Idle");
         // }
+    public void Attack()
+    {
+        
     }
 }
