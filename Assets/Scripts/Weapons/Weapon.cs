@@ -7,8 +7,7 @@ public class Weapon : MonoBehaviour
     public Transform attackPoint;
     public float attackRange = 1f;
     public LayerMask enemyLayers;
-    public GameObject sprite;
-    public Animator animator;
+    public float animationDelay;
 
     //public GameObject weaponType;
 
@@ -29,8 +28,11 @@ public class Weapon : MonoBehaviour
 
     void PerformAnimation()
     {
-        transform.DOLocalMove(new Vector3(.8f,0,.5f), 0.6f).SetEase(Ease.InOutBack);
-        //transform.DOMove(new Vector3(0,0,0), 0.6f).SetEase(Ease.InOutBack).From();
+        Sequence sequence = DOTween.Sequence();
+        sequence.Append(transform.DOLocalMove(new Vector3(.5f,0,.5f), animationDelay).SetEase(Ease.InQuint));
+        sequence.Append(transform.DOLocalMove(new Vector3(0,0,0), animationDelay));
+        sequence.Append(transform.DOLocalMove(new Vector3(-.5f,0,.5f), animationDelay).SetEase(Ease.InQuint));
+        sequence.Append(transform.DOLocalMove(new Vector3(0,0,0), animationDelay).SetEase(Ease.InOutQuint));
     }
     void OnDrawGizmosSelected()
     {

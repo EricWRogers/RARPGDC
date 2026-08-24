@@ -57,7 +57,7 @@ Transform:
   m_GameObject: {fileID: 7229139403379512753}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.8, y: 0, z: 0.53}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -83,8 +83,7 @@ MonoBehaviour:
   enemyLayers:
     serializedVersion: 2
     m_Bits: 8
-  sprite: {fileID: 8975956400627894158}
-  animator: {fileID: 0}
+  animationDelay: 0.3
 --- !u!1 &8975956400627894158
 GameObject:
   m_ObjectHideFlags: 0
