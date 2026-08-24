@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
-public class SimplePlayer : MonoBehaviour, InputSystem_Actions.IPlayerActions
+public class SimplePlayerController: MonoBehaviour, InputSystem_Actions.IPlayerActions
 {
     [Header("Speed and Acceleration")]
     public float speed;
@@ -14,11 +14,14 @@ public class SimplePlayer : MonoBehaviour, InputSystem_Actions.IPlayerActions
     public CharacterController controller;
 
     [Header("Health")]
-    public int maxHealth;
-    [SerializeField] private int health;
+    public int maxHealth {get; private set;} = 10;
+     public int health;
+     public GameObject GameOverScreen;
     [Header("Combat")]
     public GameObject weapon;
     public Weapon weaponScript;
+    [Header("Appearance")]
+    public SpriteRenderer sprite;
 
 
     // INPUT EVENTS //
@@ -36,7 +39,15 @@ public class SimplePlayer : MonoBehaviour, InputSystem_Actions.IPlayerActions
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-        weaponScript.Attack();
+        if (weapon != null && weaponScript != null)
+        {
+            weaponScript.Attack();
+        }
+        else
+        {
+            return;
+        }
+        
     }
 
     void Awake()
@@ -45,11 +56,20 @@ public class SimplePlayer : MonoBehaviour, InputSystem_Actions.IPlayerActions
     }
     void Start()
     {
+        minusHP.Enable();
+        plusHP.Enable();
+        instantDeath.Enable();
 
+        GameOverScreen.SetActive(false);
     }
 
     void Update()
     {   
+        if (health == 0)
+        {
+            Die();
+        }
+
         //cheat keybinds
         if (minusHP.WasPressedThisFrame())
         {
@@ -76,12 +96,11 @@ public class SimplePlayer : MonoBehaviour, InputSystem_Actions.IPlayerActions
         //animation
         if (_direction.z > 0)
         {
-            weapon.transform.rotation = Quaternion.Euler(0, -180, 0);
-            Debug.Log("Left??");
+            weapon.transform.rotation = Quaternion.Euler(0, 180, 0);
         }
         if (_direction.z < 0)
         {
-            weapon.transform.rotation = Quaternion.Euler(0, -0, 0);
+            weapon.transform.rotation = Quaternion.Euler(0, 0, 0);
         }
 
         //gravity
@@ -110,6 +129,9 @@ public class SimplePlayer : MonoBehaviour, InputSystem_Actions.IPlayerActions
 
     public void Die()
     {
-        
+        speed = 0;
+        sprite.color = Color.red;
+        //reset game
+        GameOverScreen.SetActive(true);
     }
 }

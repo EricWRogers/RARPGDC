@@ -248,7 +248,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SimplePlayer
   speed: 10
   controller: {fileID: 7715256816439548438}
-  maxHealth: 0
+  maxHealth: 10
   health: 0
   weapon: {fileID: 0}
   weaponScript: {fileID: 0}
@@ -259,7 +259,15 @@ MonoBehaviour:
     m_Id: 743fe5dd-bfc7-41d4-8ec1-8e48481820e0
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings: []
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: e0ddcaeb-c9d1-4852-879d-6a322ac2abe5
+      m_Path: <Keyboard>/minus
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Minus HP
+      m_Flags: 0
     m_Flags: 0
     m_Priority: 0
   plusHP:
@@ -269,7 +277,15 @@ MonoBehaviour:
     m_Id: 30be035c-a7d3-41bd-8aba-8cd8f02494d2
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings: []
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 3b954b40-e043-4c25-9cae-591fde9a638c
+      m_Path: <Keyboard>/#(+)
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Plus HP
+      m_Flags: 0
     m_Flags: 0
     m_Priority: 0
   instantDeath:
@@ -279,7 +295,15 @@ MonoBehaviour:
     m_Id: f5d45b84-1265-4ac4-b559-404d2f30b138
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings: []
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: c0c4a750-022d-495b-a1fc-6f06d9d97917
+      m_Path: <Keyboard>/l
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Instant Death
+      m_Flags: 0
     m_Flags: 0
     m_Priority: 0
 --- !u!114 &4769269466461886191
