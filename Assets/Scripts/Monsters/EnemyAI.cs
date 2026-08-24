@@ -6,6 +6,7 @@ public class EnemyAI : MonoBehaviour
     public Transform player { get; private set; }
     public float sightRange = 8f;      // How far it can notice you
     public LayerMask obstacleMask;     // Layer for walls and other occluders
+    [SerializeField] private float eyeHeight = 1.5f;
 
     [Header("Attack settings")]
     public float attackRange = 2.0f;
@@ -61,18 +62,23 @@ public class EnemyAI : MonoBehaviour
         currentState.OnEnter(this);
     }
 
-    // The real vision check: visible if "within range" AND "no wall in between"
     public bool CanSeePlayer()
     {
-        Vector3 toPlayer = player.position - transform.position;
-        if (toPlayer.magnitude > sightRange) return false;
+        Vector3 eyePosition = transform.position + Vector3.up * eyeHeight;
+        Vector3 playerEyePosition = player.position + Vector3.up * eyeHeight;
 
-        
-        if (Physics.Raycast(transform.position, toPlayer.normalized,
-                toPlayer.magnitude, obstacleMask)) return false;
+        Vector3 toPlayer = playerEyePosition - eyePosition; 
+        float distanceToPlayer = toPlayer.magnitude;
+
+        if (distanceToPlayer > sightRange) return false; 
+
+        if (Physics.Raycast(eyePosition, toPlayer.normalized, distanceToPlayer, obstacleMask)) 
+            {
+            return false;
+            }
 
         LastKnownPosition = player.position; 
-        return true;
+        return true; 
     }
 
     public bool AttackTarget()

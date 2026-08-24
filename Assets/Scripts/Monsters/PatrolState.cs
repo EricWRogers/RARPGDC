@@ -17,9 +17,12 @@ public class PatrolState : MonsterIState
     { 
         if (enemy.CanSeePlayer()) 
         { 
-            enemy.ChangeState(enemy.Chase); 
-            return;
-        } 
+            enemy.Agent.SetDestination(enemy.player.position);
+        }
+        else
+        {
+            enemy.ChangeState(enemy.Search);
+        }
 
         if (HasReachedDestination())
         {

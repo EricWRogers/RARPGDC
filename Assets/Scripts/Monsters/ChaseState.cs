@@ -20,10 +20,11 @@ public class ChaseState : MonsterIState
         }
 
 
-        
+
         if (enemy.CanSeePlayer())
         {
             lostTimer = 0f; 
+            enemy.Agent.SetDestination(enemy.player.position);
         }
         else
         {
