@@ -10,6 +10,7 @@ public class ChaseState : MonsterIState
         this.enemy = context;
         lostTimer = 0f; 
         enemy.SetStateColor(Color.red);
+        Debug.Log("Chase state");
     }
 
     public void OnUpdate()
