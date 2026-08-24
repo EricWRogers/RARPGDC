@@ -25,6 +25,9 @@ public class EnemyAI : MonoBehaviour
     public SearchState Search { get; private set; }
     public AttackState Attack { get; private set; }
 
+    [Header("Patrol Settings")]
+    public Transform[] waypoints;
+    public UnityEngine.AI.NavMeshAgent Agent { get; private set; }
     private MonsterIState currentState;
 
     void Awake()
@@ -38,6 +41,8 @@ public class EnemyAI : MonoBehaviour
         {
             Debug.LogError($"WHERE IS THE PLAYER??? {gameObject.name} CANT FIND ANYTHING TAGGED PLAYER!");
         }
+
+        Agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
 
         Patrol = new PatrolState();
         Chase = new ChaseState();
