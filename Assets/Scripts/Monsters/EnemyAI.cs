@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEditor.ShaderGraph;
 using UnityEngine;
 
@@ -74,8 +75,23 @@ public class EnemyAI : MonoBehaviour
         currentState.OnEnter(this);
     }
 
+    void OnDrawGizmos()
+    {
+        if (player == null)
+        {
+            return;
+        }
+
+        Gizmos.DrawRay(transform.position + Vector3.up * eyeHeight, (player.position - (transform.position + Vector3.up * eyeHeight)).normalized);
+    }
+
     public bool CanSeePlayer()
     {
+        if (player == null)
+        {
+            return false;
+        }
+
         Vector3 eyePosition = transform.position + Vector3.up * eyeHeight;
         
 
@@ -84,13 +100,21 @@ public class EnemyAI : MonoBehaviour
 
         if (distanceToPlayer > sightRange) return false; 
 
-        if (Physics.Raycast(eyePosition, toPlayer.normalized, distanceToPlayer, obstacleMask)) 
-            {
-                return false;   
-            }
 
-        LastKnownPosition = player.position; 
-        return true; 
+        
+        if (Physics.Raycast(eyePosition, toPlayer.normalized, out RaycastHit hit, distanceToPlayer))
+        {
+            Transform hitTransform = hit.collider.transform;
+            bool hitPlayer = hitTransform == player || hitTransform.IsChildOf(player);
+
+            if (hitPlayer)
+            {
+                LastKnownPosition = player.position;
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public bool AttackTarget()
