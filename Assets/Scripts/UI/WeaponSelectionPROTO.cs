@@ -13,7 +13,7 @@ public class WeaponSelectionPROTO : MonoBehaviour
 
     public List<float> defaultSword = new List<float> {2f, 0.8f, 0.1f};
     public List<float> defaultStaff = new List<float> {4f, 0.8f, 0.3f};
-    public List<float> defaultMace = new List<float> {8f, 0.8f, 0.15f};
+    public List<float> defaultMace = new List<float> {8f, 0.8f, 0.6f};
     public List<float> swordStats;
     public List<float> staffStats;
     public List<float> maceStats;

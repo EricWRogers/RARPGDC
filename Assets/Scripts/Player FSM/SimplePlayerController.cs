@@ -14,8 +14,8 @@ public class SimplePlayerController: MonoBehaviour, InputSystem_Actions.IPlayerA
     public CharacterController controller;
 
     [Header("Health")]
-    public int maxHealth {get; private set;} = 5;
-     public int health;
+    public int maxHealth {get; private set;} = 30;
+     public float health;
      public GameObject GameOverScreen;
     [Header("Combat")]
     public GameObject weapon;
@@ -39,6 +39,8 @@ public class SimplePlayerController: MonoBehaviour, InputSystem_Actions.IPlayerA
 
     public void OnAttack(InputAction.CallbackContext context)
     {
+        if (!context.performed) return;
+
         if (weapon != null && weaponScript != null)
         {
             weaponScript.Attack();
@@ -119,7 +121,7 @@ public class SimplePlayerController: MonoBehaviour, InputSystem_Actions.IPlayerA
         controller.Move(_direction * speed * Time.deltaTime + _velocity);
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         health -= damage;
     }

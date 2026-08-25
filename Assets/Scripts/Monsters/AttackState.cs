@@ -3,10 +3,10 @@ using UnityEngine;
 public class AttackState : MonsterIState
 {
     private EnemyAI enemy;
-    private float attackCooldown = 1.5f;
+    private float attackCooldown = 2.5f;
     private float nextAttackTime = 0f;
     [Header("Damage")]
-    public int damage;
+    public float damage;
 
     private SimplePlayerController playerScript;
 
@@ -45,7 +45,7 @@ public class AttackState : MonsterIState
     private void ExecuteAttack()
     {
         //enemy.GetComponent<Animator>().SetTrigger("Attack");
-        damage = Random.Range(1, 3);
+        damage = Random.Range(0.3f, 1f);
 
         enemy.SetStateColor(Color.pink);
         playerScript.TakeDamage(damage);
