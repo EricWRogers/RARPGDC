@@ -17,6 +17,16 @@ public class EnemyAI : MonoBehaviour
     public float moveSpeed = 2f;      
     public float chaseSpeed = 4f;     
 
+    [Header("Health")]
+    public int maxhealth;
+    public int health;
+    bool isDying;
+
+    
+    // public PlayerHealth playerHealth;
+    public GameObject bulletSpawnPoint;
+    public GameObject bullet;
+
     public Vector3 LastKnownPosition { get; set; }
 
     public PatrolState Patrol { get; private set; }
@@ -30,9 +40,12 @@ public class EnemyAI : MonoBehaviour
     public UnityEngine.AI.NavMeshAgent Agent { get; private set; }
     private MonsterIState currentState;
 
+    public GameObject playerGO;
+    
+
     void Awake()
     {
-        GameObject playerGO = GameObject.FindWithTag("Player");
+        playerGO = GameObject.FindWithTag("Player");
         if (playerGO != null)
         {
             player = playerGO.transform;
