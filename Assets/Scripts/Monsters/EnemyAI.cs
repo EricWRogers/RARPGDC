@@ -1,5 +1,3 @@
-using Unity.VisualScripting;
-using UnityEditor.ShaderGraph;
 using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
@@ -42,7 +40,7 @@ public class EnemyAI : MonoBehaviour
 
     void Awake()
     {
-        maxhealth = Random.Range(8, 12);
+        maxhealth = Random.Range(6, 9);
         health = maxhealth;
 
         playerGO = GameObject.FindWithTag("Player");

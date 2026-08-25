@@ -45,7 +45,7 @@ public class AttackState : MonsterIState
     private void ExecuteAttack()
     {
         //enemy.GetComponent<Animator>().SetTrigger("Attack");
-        damage = Random.Range(0.3f, 1f);
+        damage = Random.Range(1f, 2f);
 
         enemy.SetStateColor(Color.pink);
         playerScript.TakeDamage(damage);
