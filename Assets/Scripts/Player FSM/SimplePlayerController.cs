@@ -1,7 +1,5 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
 
 public class SimplePlayerController: MonoBehaviour, InputSystem_Actions.IPlayerActions
 {

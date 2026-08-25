@@ -97,7 +97,7 @@ public class WeaponSelectionPROTO : MonoBehaviour
         #if UNITY_EDITOR
             UnityEditor.EditorApplication.ExitPlaymode(); //close in editor
         #else
-            Application.Ouit();  //close game
+            Application.Quit();  //close game
         #endif
     }
 
