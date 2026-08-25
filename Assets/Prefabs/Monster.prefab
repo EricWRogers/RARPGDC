@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6091360375643961332}
   - component: {fileID: 4016363550156646421}
   - component: {fileID: 1561786101581237049}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Monster
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -165,6 +165,9 @@ MonoBehaviour:
   attackCone: 0.5
   moveSpeed: 2
   chaseSpeed: 4
+  maxhealth: 0
+  health: 0
+  playerGO: {fileID: 0}
 --- !u!195 &1561786101581237049
 NavMeshAgent:
   m_ObjectHideFlags: 0

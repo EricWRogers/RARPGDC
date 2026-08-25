@@ -1,3 +1,4 @@
+using UnityEditor.ShaderGraph;
 using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
@@ -40,6 +41,9 @@ public class EnemyAI : MonoBehaviour
 
     void Awake()
     {
+        maxhealth = Random.Range(8, 12);
+        health = maxhealth;
+
         playerGO = GameObject.FindWithTag("Player");
         if (playerGO != null)
         {
@@ -110,9 +114,11 @@ public class EnemyAI : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
+        SetStateColor(Color.red);
 
         if (health <= 0)
         {
+            SetStateColor(Color.red);
             GameObject _rm = GameObject.Find("RoomManager");
             RoomManager _rmScript = _rm.GetComponent<RoomManager>();
             _rmScript.KillEnemy(gameObject);

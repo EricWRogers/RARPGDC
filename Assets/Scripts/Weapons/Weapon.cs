@@ -22,8 +22,8 @@ public class Weapon : MonoBehaviour
         //apply damage 
         foreach(Collider enemy in hitEnemies)
         {
-            EnemyAI eAI = enemy.GetComponent<EnemyAI>();
-            eAI.health -= damage;
+            EnemyAI _enemy = enemy.GetComponent<EnemyAI>();
+            _enemy.TakeDamage(damage);
 
             Debug.Log("Hit " + enemy.name + " for " + damage + " damage.");
         }
