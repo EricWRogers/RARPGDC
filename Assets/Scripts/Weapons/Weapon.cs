@@ -22,6 +22,9 @@ public class Weapon : MonoBehaviour
         //apply damage 
         foreach(Collider enemy in hitEnemies)
         {
+            EnemyAI eAI = enemy.GetComponent<EnemyAI>();
+            eAI.health -= damage;
+
             Debug.Log("Hit " + enemy.name + " for " + damage + " damage.");
         }
     }
@@ -42,5 +45,8 @@ public class Weapon : MonoBehaviour
         }
 
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+
+
+        
     }
 }

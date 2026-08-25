@@ -65,7 +65,7 @@ public class SimplePlayerController: MonoBehaviour, InputSystem_Actions.IPlayerA
 
     void Update()
     {   
-        if (health == 0)
+        if (health <= 0)
         {
             Die();
         }
@@ -122,10 +122,6 @@ public class SimplePlayerController: MonoBehaviour, InputSystem_Actions.IPlayerA
     public void TakeDamage(int damage)
     {
         health -= damage;
-        if (health <= 0)
-        {
-            Die();
-        }
     }
 
     //stretch goal

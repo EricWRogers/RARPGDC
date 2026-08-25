@@ -22,11 +22,6 @@ public class EnemyAI : MonoBehaviour
     public int health;
     bool isDying;
 
-    
-    // public PlayerHealth playerHealth;
-    public GameObject bulletSpawnPoint;
-    public GameObject bullet;
-
     public Vector3 LastKnownPosition { get; set; }
 
     public PatrolState Patrol { get; private set; }
@@ -110,6 +105,18 @@ public class EnemyAI : MonoBehaviour
 
         float dotProduct = Vector3.Dot(forward, toPlayer);
         return dotProduct >= attackCone;
+    }
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+
+        if (health <= 0)
+        {
+            GameObject _rm = GameObject.Find("RoomManager");
+            RoomManager _rmScript = _rm.GetComponent<RoomManager>();
+            _rmScript.KillEnemy(gameObject);
+        }
     }
 
 

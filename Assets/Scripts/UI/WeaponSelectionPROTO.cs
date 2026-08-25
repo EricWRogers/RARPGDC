@@ -47,17 +47,4 @@ public class WeaponSelectionPROTO : MonoBehaviour
         Time.timeScale = 1;
         _mainMenu.SetActive(false);
     }
-
-    public void Sword()
-    {
-        //sword stats
-    }
-    public void Spear()
-    {
-        //spear stats
-    }
-    public void Mace()
-    {
-        //mace stats
-    }
 }
