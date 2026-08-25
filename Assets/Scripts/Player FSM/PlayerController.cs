@@ -25,7 +25,12 @@ public class PlayerController : MonoBehaviour, InputSystem_Actions.IPlayerAction
     
     public void OnAttack(InputAction.CallbackContext context)
     {
-        
+        return;
+    }
+
+    public void OnInverse(InputAction.CallbackContext context)
+    {
+        return;
     }
 
     void Awake()
