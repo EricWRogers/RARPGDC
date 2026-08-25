@@ -17,7 +17,7 @@ public class AttackState : MonsterIState
         playerScript = playerGO.GetComponent<SimplePlayerController>();
 
         this.enemy = context;
-        enemy.SetStateColor(Color.red);
+        // enemy.SetStateColor(Color.orange);
 
         nextAttackTime = attackCooldown;
         Debug.Log("enter atack");

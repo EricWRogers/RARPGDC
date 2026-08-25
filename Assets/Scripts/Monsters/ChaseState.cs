@@ -9,7 +9,7 @@ public class ChaseState : MonsterIState
     {
         this.enemy = context;
         lostTimer = 0f; 
-        enemy.SetStateColor(Color.red);
+        enemy.SetStateColor(Color.orange);
         Debug.Log("Chase state");
     }
 
