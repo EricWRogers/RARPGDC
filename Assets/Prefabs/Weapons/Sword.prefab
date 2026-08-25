@@ -137,7 +137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d0285c2fef4d4046b17894c8da9ecf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Weapon
-  damage: 0
+  damage: 2
   attackPoint: {fileID: 9111476172998316591}
   attackRange: 0.8
   enemyLayers:
