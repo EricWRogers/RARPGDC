@@ -50,6 +50,11 @@ public class SimplePlayerController: MonoBehaviour, InputSystem_Actions.IPlayerA
         
     }
 
+    public void OnInverse(InputAction.CallbackContext context)
+    {
+        return;
+    }
+
     void Awake()
     {
         health = maxHealth;
