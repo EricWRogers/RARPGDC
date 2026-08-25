@@ -17,23 +17,35 @@ public class EnemyAI : MonoBehaviour
     public float moveSpeed = 2f;      
     public float chaseSpeed = 4f;     
 
-    // "Last seen position" used by chase and search
+    [Header("Health")]
+    public int maxhealth;
+    public int health;
+    bool isDying;
+
+    
+    // public PlayerHealth playerHealth;
+    public GameObject bulletSpawnPoint;
+    public GameObject bullet;
+
     public Vector3 LastKnownPosition { get; set; }
 
-    // Create one set of states up front and reuse them (no new each time)
     public PatrolState Patrol { get; private set; }
     public ChaseState Chase { get; private set; }
     public SearchState Search { get; private set; }
     public AttackState Attack { get; private set; }
+    public WaitState Wait { get; private set; }
 
     [Header("Patrol Settings")]
-    public Transform[] waypoints;
+    // public Transform[] waypoints;
     public UnityEngine.AI.NavMeshAgent Agent { get; private set; }
     private MonsterIState currentState;
 
+    public GameObject playerGO;
+    
+
     void Awake()
     {
-        GameObject playerGO = GameObject.FindWithTag("Player");
+        playerGO = GameObject.FindWithTag("Player");
         if (playerGO != null)
         {
             player = playerGO.transform;
@@ -49,9 +61,10 @@ public class EnemyAI : MonoBehaviour
         Chase = new ChaseState();
         Search = new SearchState();
         Attack = new AttackState();
+        Wait = new WaitState();
     }
 
-    void Start() { ChangeState(Patrol); }
+    void Start() { ChangeState(Wait); }
 
     void Update() { currentState?.OnUpdate(); }
 
@@ -65,16 +78,16 @@ public class EnemyAI : MonoBehaviour
     public bool CanSeePlayer()
     {
         Vector3 eyePosition = transform.position + Vector3.up * eyeHeight;
-        Vector3 playerEyePosition = player.position + Vector3.up * eyeHeight;
+        
 
-        Vector3 toPlayer = playerEyePosition - eyePosition; 
+        Vector3 toPlayer = player.position - eyePosition; 
         float distanceToPlayer = toPlayer.magnitude;
 
         if (distanceToPlayer > sightRange) return false; 
 
         if (Physics.Raycast(eyePosition, toPlayer.normalized, distanceToPlayer, obstacleMask)) 
             {
-            return false;
+                return false;   
             }
 
         LastKnownPosition = player.position; 

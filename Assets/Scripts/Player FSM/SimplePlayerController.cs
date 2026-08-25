@@ -14,7 +14,7 @@ public class SimplePlayerController: MonoBehaviour, InputSystem_Actions.IPlayerA
     public CharacterController controller;
 
     [Header("Health")]
-    public int maxHealth {get; private set;} = 10;
+    public int maxHealth {get; private set;} = 5;
      public int health;
      public GameObject GameOverScreen;
     [Header("Combat")]
@@ -119,7 +119,14 @@ public class SimplePlayerController: MonoBehaviour, InputSystem_Actions.IPlayerA
         controller.Move(_direction * speed * Time.deltaTime + _velocity);
     }
 
-    
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
 
     //stretch goal
     public void Dodge()

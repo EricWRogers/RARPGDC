@@ -10,7 +10,7 @@ public class PatrolState : MonsterIState
         this.enemy = context; 
         Debug.Log("Entering Patrol State"); 
 
-        MoveToCurrentWaypoint();
+        // MoveToCurrentWaypoint();
     } 
 
     public void OnUpdate() 
@@ -26,7 +26,7 @@ public class PatrolState : MonsterIState
 
         if (HasReachedDestination())
         {
-            CycleToNextWaypoint();
+            // CycleToNextWaypoint();
         }
     } 
 
@@ -38,24 +38,24 @@ public class PatrolState : MonsterIState
         }
     } 
 
-    private void MoveToCurrentWaypoint()
-    {
-        if (enemy.waypoints == null || enemy.waypoints.Length == 0) return;
+    // private void MoveToCurrentWaypoint()
+    // {
+    //     if (enemy.waypoints == null || enemy.waypoints.Length == 0) return;
 
-        Transform targetWaypoint = enemy.waypoints[currentWaypointIndex];
-        if (targetWaypoint != null && enemy.Agent != null)
-        {
-            enemy.Agent.SetDestination(targetWaypoint.position);
-        }
-    }
+    //     Transform targetWaypoint = enemy.waypoints[currentWaypointIndex];
+    //     if (targetWaypoint != null && enemy.Agent != null)
+    //     {
+    //         enemy.Agent.SetDestination(targetWaypoint.position);
+    //     }
+    // }
 
-    private void CycleToNextWaypoint()
-    {
-        if (enemy.waypoints == null || enemy.waypoints.Length == 0) return;
+    // private void CycleToNextWaypoint()
+    // {
+    //     if (enemy.waypoints == null || enemy.waypoints.Length == 0) return;
 
-        currentWaypointIndex = (currentWaypointIndex + 1) % enemy.waypoints.Length;
-        MoveToCurrentWaypoint();
-    }
+    //     currentWaypointIndex = (currentWaypointIndex + 1) % enemy.waypoints.Length;
+    //     MoveToCurrentWaypoint();
+    // }
 
     private bool HasReachedDestination()
     {
