@@ -37,9 +37,6 @@ public class ChaseState : MonsterIState
             }
         }
 
-        // enemy.transform.position = Vector3.MoveTowards(
-        //     enemy.transform.position, enemy.LastKnownPosition,
-        //     enemy.chaseSpeed * Time.deltaTime);
     }
 
     public void OnExit() { }

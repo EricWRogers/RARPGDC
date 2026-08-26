@@ -23,23 +23,18 @@ public class EnemyAI : MonoBehaviour
     bool isDying;
 
     public Vector3 LastKnownPosition { get; set; }
-
-    public PatrolState Patrol { get; private set; }
     public ChaseState Chase { get; private set; }
     public SearchState Search { get; private set; }
     public AttackState Attack { get; private set; }
     public WaitState Wait { get; private set; }
     public StunState Stun { get; private set; }
-
-    [Header("Patrol Settings")]
-    // public Transform[] waypoints;
     public UnityEngine.AI.NavMeshAgent Agent { get; private set; }
     private MonsterIState currentState;
 
     public GameObject playerGO;
 
     [Header("Stun Settings")]
-    public int stunTimer;
+    public float stunTimer;
     
 
     void Awake()
@@ -59,11 +54,10 @@ public class EnemyAI : MonoBehaviour
 
         Agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
 
-        Patrol = new PatrolState();
-        Chase = new ChaseState();
-        Search = new SearchState();
-        Attack = new AttackState();
         Wait = new WaitState();
+        Search = new SearchState();
+        Chase = new ChaseState();
+        Attack = new AttackState();
         Stun = new StunState();
     }
 
