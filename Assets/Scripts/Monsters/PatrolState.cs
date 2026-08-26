@@ -3,7 +3,7 @@ using UnityEngine;
 public class PatrolState : MonsterIState 
 { 
     private EnemyAI enemy; 
-    private int currentWaypointIndex = 0;
+    // private int currentWaypointIndex = 0;
 
     public void OnEnter(EnemyAI context) 
     { 

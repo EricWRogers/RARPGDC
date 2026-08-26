@@ -98,15 +98,7 @@ public class SimplePlayerController: MonoBehaviour, InputSystem_Actions.IPlayerA
 
     void Movement()
     {
-        //animation
-        if (_direction.z > 0)
-        {
-            weapon.transform.rotation = Quaternion.Euler(0, 180, 0);
-        }
-        if (_direction.z < 0)
-        {
-            weapon.transform.rotation = Quaternion.Euler(0, 0, 0);
-        }
+        AimWeaponAtMouse();
 
         //gravity
         _isGrounded = controller.isGrounded;
@@ -122,6 +114,26 @@ public class SimplePlayerController: MonoBehaviour, InputSystem_Actions.IPlayerA
         
         //put it all together
         controller.Move(_direction * speed * Time.deltaTime + _velocity);
+    }
+
+    void AimWeaponAtMouse()
+    {
+        if (weapon == null || Camera.main == null) return;
+
+        Ray mouseRay = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+        Plane playerPlane = new Plane(Vector3.up, transform.position);
+
+        if (!playerPlane.Raycast(mouseRay, out float distance)) return;
+
+        Vector3 mouseWorldPosition = mouseRay.GetPoint(distance);
+        Vector3 aimDirection = mouseWorldPosition - transform.position;
+        aimDirection.y = 0;
+
+        if (aimDirection.sqrMagnitude > 0)
+        {
+            float angle = Mathf.Atan2(aimDirection.x, aimDirection.z) * Mathf.Rad2Deg + 180f;
+            weapon.transform.rotation = Quaternion.Euler(0, angle, 0);
+        }
     }
 
     public void TakeDamage(float damage)
