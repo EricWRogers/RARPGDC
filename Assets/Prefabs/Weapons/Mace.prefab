@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2517435418472161267
+--- !u!1 &3986170293882241012
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,47 +8,47 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2930282736450749310}
-  - component: {fileID: 4826368117217153296}
-  - component: {fileID: 5082968295893462944}
-  - component: {fileID: 1585646257902550111}
+  - component: {fileID: 2824543503228829610}
+  - component: {fileID: 6357486850301345655}
+  - component: {fileID: 5851539447946385283}
+  - component: {fileID: 185637781094536630}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2930282736450749310
+--- !u!4 &2824543503228829610
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2517435418472161267}
+  m_GameObject: {fileID: 3986170293882241012}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.27775103, y: 0, z: -0, w: 0.9606531}
-  m_LocalPosition: {x: 0.003, y: -0.484, z: -1.202}
-  m_LocalScale: {x: 0.38274726, y: 0.38274726, z: 0.38274726}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.083, y: -0.03, z: 0.472}
+  m_LocalScale: {x: 3.0023313, y: 13.095874, z: 0.20926249}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6797045700792680045}
+  m_Father: {fileID: 314190911150805522}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &4826368117217153296
+--- !u!33 &6357486850301345655
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2517435418472161267}
+  m_GameObject: {fileID: 3986170293882241012}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &5082968295893462944
+--- !u!23 &5851539447946385283
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2517435418472161267}
+  m_GameObject: {fileID: 3986170293882241012}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -91,13 +91,13 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &1585646257902550111
+--- !u!135 &185637781094536630
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2517435418472161267}
+  m_GameObject: {fileID: 3986170293882241012}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -143,7 +143,8 @@ Transform:
   m_LocalPosition: {x: 0, y: -0.5, z: -0.5083}
   m_LocalScale: {x: 0.13012469, y: 0.03, z: 1.5165416}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2824543503228829610}
   m_Father: {fileID: 6797045700792680045}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 90}
 --- !u!33 &4221836648376816248
@@ -287,7 +288,6 @@ Transform:
   m_Children:
   - {fileID: 1789462839415898661}
   - {fileID: 314190911150805522}
-  - {fileID: 2930282736450749310}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 32.252, y: 0, z: 0}
 --- !u!114 &1459931014916999134
@@ -302,14 +302,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d0285c2fef4d4046b17894c8da9ecf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Weapon
-  myType: 0
+  myType: 2
   damage: 2
   attackPoint: {fileID: 1789462839415898661}
   attackRange: 0.8
   enemyLayers:
     serializedVersion: 2
     m_Bits: 8
-  animationStepLength: 0.15
+  animationStepLength: 0.6
   recentHitTimers: []
   recentHits: []
   spearJabDistance: 0.75
@@ -319,3 +319,6 @@ MonoBehaviour:
   fireballForwardDistance: 0.15
   fireballRecoilDistance: 0.1
   fireBallPrefab: {fileID: 0}
+  maceRestingHeight: 0.15
+  maceRestingAngle: -55
+  maceSlamHeight: -0.1

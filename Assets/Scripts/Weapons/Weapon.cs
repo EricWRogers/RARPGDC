@@ -28,9 +28,13 @@ public class Weapon : MonoBehaviour
     public float fireballForwardDistance = 0.15f;
     public float fireballRecoilDistance = 0.1f;
     private Vector3 _restingBodyLocalPosition;
+    private Vector3 _restingBodyLocalEulerAngles;
     private float _restingLightIntensity;
     public GameObject fireBallPrefab;
     private SimplePlayerController player;
+    public float maceRestingHeight = 0.15f;
+    public float maceRestingAngle = -55f;
+    public float maceSlamHeight = -0.1f;
 
     //public GameObject weaponType;
 
@@ -40,7 +44,15 @@ public class Weapon : MonoBehaviour
 
         _restingLocalPosition = transform.localPosition;
         if (weaponBody != null)
+        {
             _restingBodyLocalPosition = weaponBody.transform.localPosition;
+            _restingBodyLocalEulerAngles = weaponBody.transform.localEulerAngles;
+            if (myType == WeaponType.Mace)
+            {
+                weaponBody.transform.localPosition = _restingBodyLocalPosition + Vector3.up * maceRestingHeight;
+                weaponBody.transform.localRotation = Quaternion.Euler(_restingBodyLocalEulerAngles + new Vector3(maceRestingAngle, 0f, 0f));
+            }
+        }
         if (weaponLight != null)
             _restingLightIntensity = weaponLight.intensity;
     }
@@ -55,6 +67,9 @@ public class Weapon : MonoBehaviour
 
         else if(myType == WeaponType.Fireball)
             _attackSequence = PerformFireballAnimation();
+
+        else if(myType == WeaponType.Mace)
+            _attackSequence = PerformMaceAnimation();
     }
 
     Sequence PerformFireballAnimation()
@@ -124,6 +139,40 @@ public class Weapon : MonoBehaviour
         
         });
 
+        return sequence;
+    }
+
+    Sequence PerformMaceAnimation()
+    {
+        if (weaponBody == null) return DOTween.Sequence();
+
+        float stepDuration = Mathf.Max(animationStepLength, 0.01f);
+        Vector3 restingPosition = _restingBodyLocalPosition + Vector3.up * maceRestingHeight;
+        Vector3 windupPosition = restingPosition + Vector3.up * maceRestingHeight;
+        Vector3 slamPosition = _restingBodyLocalPosition + Vector3.up * maceSlamHeight;
+        Vector3 restingRotation = _restingBodyLocalEulerAngles + new Vector3(maceRestingAngle, 0f, 0f);
+        Vector3 windupRotation = restingRotation + new Vector3(-25f, 0f, 0f);
+        Vector3 slamRotation = restingRotation + new Vector3(130f, 0f, 0f);
+        Transform maceTransform = weaponBody.transform;
+
+        Sequence sequence = DOTween.Sequence();
+        sequence.AppendCallback(() => player.aimingDisabled = true);
+        sequence.Append(maceTransform.DOLocalMove(windupPosition, stepDuration).SetEase(Ease.OutQuad));
+        sequence.Join(maceTransform.DOLocalRotate(windupRotation, stepDuration).SetEase(Ease.OutQuad));
+        sequence.Append(maceTransform.DOLocalMove(slamPosition, stepDuration * 0.35f).SetEase(Ease.InQuad));
+        sequence.Join(maceTransform.DOLocalRotate(slamRotation, stepDuration * 0.35f).SetEase(Ease.InQuad));
+        sequence.AppendCallback(ApplyDamage);
+        sequence.Append(maceTransform.DOLocalMove(restingPosition, stepDuration * 0.75f).SetEase(Ease.OutQuad));
+        sequence.Join(maceTransform.DOLocalRotate(restingRotation, stepDuration * 0.75f).SetEase(Ease.OutQuad));
+        sequence.AppendCallback(() => player.aimingDisabled = false);
+        sequence.OnComplete(() => _attackSequence = null);
+        sequence.OnKill(() =>
+        {
+            maceTransform.localPosition = restingPosition;
+            maceTransform.localRotation = Quaternion.Euler(restingRotation);
+            player.aimingDisabled = false;
+            _attackSequence = null;
+        });
         return sequence;
     }
 
