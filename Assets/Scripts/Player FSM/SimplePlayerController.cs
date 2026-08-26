@@ -10,6 +10,7 @@ public class SimplePlayerController: MonoBehaviour, InputSystem_Actions.IPlayerA
     private bool _isGrounded;
     Vector3 _direction;
     public CharacterController controller;
+    public bool aimingDisabled = false;
 
     [Header("Health")]
     public int maxHealth {get; private set;} = 30;
@@ -118,7 +119,7 @@ public class SimplePlayerController: MonoBehaviour, InputSystem_Actions.IPlayerA
 
     void AimWeaponAtMouse()
     {
-        if (weapon == null || Camera.main == null) return;
+        if (weapon == null || Camera.main == null || aimingDisabled) return;
 
         Ray mouseRay = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
         Plane playerPlane = new Plane(Vector3.up, transform.position);

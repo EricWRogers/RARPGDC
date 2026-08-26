@@ -30,11 +30,14 @@ public class Weapon : MonoBehaviour
     private Vector3 _restingBodyLocalPosition;
     private float _restingLightIntensity;
     public GameObject fireBallPrefab;
+    private SimplePlayerController player;
 
     //public GameObject weaponType;
 
     void Awake()
     {
+        player = FindFirstObjectByType<SimplePlayerController>();
+
         _restingLocalPosition = transform.localPosition;
         if (weaponBody != null)
             _restingBodyLocalPosition = weaponBody.transform.localPosition;
@@ -68,6 +71,7 @@ public class Weapon : MonoBehaviour
 
         Sequence sequence = DOTween.Sequence();
         //Wind up
+        sequence.AppendCallback(() => player.aimingDisabled = true);
         sequence.Append(weaponLight.DOIntensity(fireballLightIntensity, fadeDuration).SetEase(Ease.InOutQuad));
         sequence.Join(weaponBody.transform.DOLocalMove(forwardPosition, fadeDuration).SetEase(Ease.InOutQuad));
         //Shoot fireball
@@ -78,12 +82,14 @@ public class Weapon : MonoBehaviour
         sequence.Append(weaponBody.transform.DOLocalMove(_restingBodyLocalPosition, fadeDuration * 0.75f).SetEase(Ease.OutQuad));
         sequence.Join(weaponLight.DOIntensity(_restingLightIntensity, fadeDuration * 0.5f));
         sequence.AppendCallback(() => weaponLight.enabled = _restingLightIntensity > 0f);
+        sequence.AppendCallback(() => player.aimingDisabled = false);
         sequence.OnComplete(() => _attackSequence = null);
         sequence.OnKill(() =>
         {
             weaponBody.transform.localPosition = _restingBodyLocalPosition;
             weaponLight.intensity = _restingLightIntensity;
             weaponLight.enabled = _restingLightIntensity > 0f;
+            player.aimingDisabled = false;
             _attackSequence = null;
         });
         return sequence;
@@ -92,10 +98,11 @@ public class Weapon : MonoBehaviour
     Sequence PerformSpearAnimation()
     {
         Sequence sequence = DOTween.Sequence();
-        Vector3 localForward = weaponBody.transform.localRotation * Vector3.forward;
+        Vector3 localForward = transform.localRotation * -Vector3.forward;
         Vector3 jabPosition = _restingLocalPosition + localForward * spearJabDistance;
         float stepDuration = Mathf.Max(animationStepLength, 0.01f);
 
+        sequence.AppendCallback(() => player.aimingDisabled = true);
         sequence.Append(
             transform.DOLocalMove(jabPosition, stepDuration)
                 .SetEase(Ease.OutQuad)
@@ -108,8 +115,15 @@ public class Weapon : MonoBehaviour
                 .SetEase(Ease.InQuad)
         );
 
+        sequence.AppendCallback(() => player.aimingDisabled = false);
         sequence.OnComplete(() => _attackSequence = null);
-        sequence.OnKill(() => _attackSequence = null);
+        sequence.OnKill(() => 
+        {
+            _attackSequence = null;
+            player.aimingDisabled = false;
+        
+        });
+
         return sequence;
     }
 
