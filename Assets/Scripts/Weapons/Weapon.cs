@@ -35,6 +35,7 @@ public class Weapon : MonoBehaviour
     public float maceRestingHeight = 0.15f;
     public float maceRestingAngle = -55f;
     public float maceSlamHeight = -0.1f;
+    public GameObject shockWavePrefab;
 
     //public GameObject weaponType;
 
@@ -161,7 +162,8 @@ public class Weapon : MonoBehaviour
         sequence.Join(maceTransform.DOLocalRotate(windupRotation, stepDuration).SetEase(Ease.OutQuad));
         sequence.Append(maceTransform.DOLocalMove(slamPosition, stepDuration * 0.35f).SetEase(Ease.InQuad));
         sequence.Join(maceTransform.DOLocalRotate(slamRotation, stepDuration * 0.35f).SetEase(Ease.InQuad));
-        sequence.AppendCallback(ApplyDamage);
+        sequence.AppendCallback(() => Instantiate(shockWavePrefab, attackPoint.position + (-attackPoint.forward * 1.2f), transform.rotation));
+        //sequence.AppendCallback(ApplyDamage);
         sequence.Append(maceTransform.DOLocalMove(restingPosition, stepDuration * 0.75f).SetEase(Ease.OutQuad));
         sequence.Join(maceTransform.DOLocalRotate(restingRotation, stepDuration * 0.75f).SetEase(Ease.OutQuad));
         sequence.AppendCallback(() => player.aimingDisabled = false);

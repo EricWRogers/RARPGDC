@@ -303,7 +303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Weapon
   myType: 2
-  damage: 2
+  damage: 8
   attackPoint: {fileID: 1789462839415898661}
   attackRange: 0.8
   enemyLayers:
@@ -322,3 +322,4 @@ MonoBehaviour:
   maceRestingHeight: 0.15
   maceRestingAngle: -55
   maceSlamHeight: -0.1
+  shockWavePrefab: {fileID: 5824480331233329466, guid: d73b35ccb8362b740a81f772d7cc94ef, type: 3}
