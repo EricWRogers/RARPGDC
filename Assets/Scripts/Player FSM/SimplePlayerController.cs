@@ -50,10 +50,11 @@ public class SimplePlayerController: MonoBehaviour, InputSystem_Actions.IPlayerA
         }
         
     }
-
     public void OnInverse(InputAction.CallbackContext context)
     {
-        return;
+        GameObject _rm = GameObject.Find("RoomManager");
+        RoomManager _rmS = _rm.GetComponent<RoomManager>();
+        _rmS.Invert();
     }
 
     void Awake()

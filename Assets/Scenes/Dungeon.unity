@@ -632,6 +632,7 @@ MonoBehaviour:
   - {fileID: 1219257980228737747, guid: 6676011d6f32662469795e478e0129bf, type: 3}
   - {fileID: 4596121746304374011, guid: abc04e99f5c3e634babdebb3a1045454, type: 3}
   - {fileID: 6029994922071299850, guid: 82af5be94c590b448a10048f8a144dad, type: 3}
+  enemies: []
   enemiesLeft: 3
   killEnemyDebug:
     m_Name: killDebug
@@ -871,12 +872,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4769269466461886191, guid: 8a7bbd9eb8e297e4794b52966935c303, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4769269466461886191, guid: 8a7bbd9eb8e297e4794b52966935c303, type: 3}
       propertyPath: m_ActionEvents.Array.size
       value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 4769269466461886191, guid: 8a7bbd9eb8e297e4794b52966935c303, type: 3}
       propertyPath: m_ActionEvents.Array.data[12].m_ActionId
-      value: 3782374e-0900-4586-a81e-6a5357c66047
+      value: 0c08875f-e0a4-4f59-908b-724249561582
       objectReference: {fileID: 0}
     - target: {fileID: 4769269466461886191, guid: 8a7bbd9eb8e297e4794b52966935c303, type: 3}
       propertyPath: m_ActionEvents.Array.data[12].m_ActionName
