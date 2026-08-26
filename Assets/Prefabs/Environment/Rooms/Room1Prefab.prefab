@@ -541,6 +541,10 @@ PrefabInstance:
       value: 5.96
       objectReference: {fileID: 0}
     - target: {fileID: 4587932139586880692, guid: 30b72b37a2bab3d448e08099cea051cc, type: 3}
+      propertyPath: maxMonsters
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4587932139586880692, guid: 30b72b37a2bab3d448e08099cea051cc, type: 3}
       propertyPath: monsterPrefab
       value: 
       objectReference: {fileID: 5255903421058279154, guid: fcfa4de15548d439a930377538ca2ef6, type: 3}
