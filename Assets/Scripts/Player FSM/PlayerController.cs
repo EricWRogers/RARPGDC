@@ -15,6 +15,9 @@ public class PlayerController : MonoBehaviour, InputSystem_Actions.IPlayerAction
     Vector3 _direction;
     public CharacterController controller;
 
+    //FlipIndecaor
+    public FlipInecator flipInecator;
+
     // INPUT EVENTS
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -102,6 +105,18 @@ public class PlayerController : MonoBehaviour, InputSystem_Actions.IPlayerAction
         // }
     public void Attack()
     {
+        
+    }
+
+    //FOR TOUCHING WATER
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "water")
+        {
+            flipInecator.ShowFlipInd();
+        }
+        else
+            flipInecator.HideFlipInd();
         
     }
 }
