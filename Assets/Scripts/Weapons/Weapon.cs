@@ -45,7 +45,7 @@ public class Weapon : MonoBehaviour
         sequence.AppendCallback(ApplyDamage);
 
         sequence.Append(
-            transform.DOLocalMove(_restingLocalPosition, stepDuration)
+            transform.DOLocalMove(_restingLocalPosition, stepDuration * 1.5f)
                 .SetEase(Ease.InQuad)
         );
 
