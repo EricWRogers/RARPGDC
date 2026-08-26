@@ -29,6 +29,7 @@ public class Weapon : MonoBehaviour
     public float fireballRecoilDistance = 0.1f;
     private Vector3 _restingBodyLocalPosition;
     private float _restingLightIntensity;
+    public GameObject fireBallPrefab;
 
     //public GameObject weaponType;
 
@@ -67,7 +68,7 @@ public class Weapon : MonoBehaviour
         Sequence sequence = DOTween.Sequence();
         sequence.Append(weaponLight.DOIntensity(fireballLightIntensity, fadeDuration).SetEase(Ease.InOutQuad));
         sequence.Join(weaponBody.transform.DOLocalMove(forwardPosition, fadeDuration).SetEase(Ease.InOutQuad));
-        // Shoot fireball here
+        Instantiate(fireBallPrefab, attackPoint.position, transform.rotation);
         sequence.Append(weaponBody.transform.DOLocalMove(recoilPosition, fadeDuration * 0.25f).SetEase(Ease.OutQuad));
         sequence.Append(weaponBody.transform.DOLocalMove(_restingBodyLocalPosition, fadeDuration * 0.75f).SetEase(Ease.OutQuad));
         sequence.Append(weaponLight.DOIntensity(_restingLightIntensity, fadeDuration * 0.5f));

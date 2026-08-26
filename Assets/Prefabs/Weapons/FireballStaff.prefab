@@ -206,6 +206,7 @@ MonoBehaviour:
   fireballLightIntensity: 5
   fireballForwardDistance: 0.15
   fireballRecoilDistance: 0.1
+  fireBallPrefab: {fileID: 5101280015437504809, guid: 9bb662f34cba29c44869939c37178ac9, type: 3}
 --- !u!1 &8687462235383668187
 GameObject:
   m_ObjectHideFlags: 0
