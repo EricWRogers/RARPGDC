@@ -12,6 +12,7 @@ public class StunState : MonsterIState
         enemy = context;
         waitTimer = 0f;
         enemy.SetStateColor(Color.yellow);
+        enemy.Agent.isStopped = true;
         Debug.Log("has been stunned");
     }
 
@@ -26,5 +27,8 @@ public class StunState : MonsterIState
         }
     }
 
-    public void OnExit() {  }
+    public void OnExit()
+    {
+        enemy.Agent.isStopped = false;
+    }
 }
