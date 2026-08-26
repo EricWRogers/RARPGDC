@@ -4,8 +4,8 @@ public class EnemyAI : MonoBehaviour
 {
     [Header("Detection settings")]
     public Transform player { get; private set; }
-    public float sightRange = 8f;      // How far it can notice you
-    public LayerMask obstacleMask;     // Layer for walls and other occluders
+    public float sightRange = 8f;     
+    public LayerMask obstacleMask;    
     [SerializeField] private float eyeHeight = 1.5f;
 
     [Header("Attack settings")]
@@ -29,6 +29,7 @@ public class EnemyAI : MonoBehaviour
     public SearchState Search { get; private set; }
     public AttackState Attack { get; private set; }
     public WaitState Wait { get; private set; }
+    public StunState Stun { get; private set; }
 
     [Header("Patrol Settings")]
     // public Transform[] waypoints;
@@ -36,6 +37,9 @@ public class EnemyAI : MonoBehaviour
     private MonsterIState currentState;
 
     public GameObject playerGO;
+
+    [Header("Stun Settings")]
+    public int stunTimer;
     
 
     void Awake()
@@ -60,6 +64,7 @@ public class EnemyAI : MonoBehaviour
         Search = new SearchState();
         Attack = new AttackState();
         Wait = new WaitState();
+        Stun = new StunState();
     }
 
     void Start() { ChangeState(Wait); }
@@ -137,6 +142,7 @@ public class EnemyAI : MonoBehaviour
     {
         health -= damage;
         SetStateColor(Color.red);
+        ChangeState(Stun);
 
         if (health <= 0)
         {

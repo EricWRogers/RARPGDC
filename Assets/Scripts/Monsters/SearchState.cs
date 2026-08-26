@@ -9,7 +9,7 @@ public class SearchState : MonsterIState
     {
         enemy = context;
         searchTimer = 0f;
-        enemy.SetStateColor(Color.yellow);
+        enemy.SetStateColor(Color.cyan);
         Debug.Log("enter search"); 
     }
 

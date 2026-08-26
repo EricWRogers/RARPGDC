@@ -9,25 +9,25 @@ public class PatrolState : MonsterIState
     { 
         this.enemy = context; 
         Debug.Log("Entering Patrol State"); 
+        enemy.SetStateColor(Color.blue);
 
-        // MoveToCurrentWaypoint();
     } 
 
     public void OnUpdate() 
     { 
         if (enemy.CanSeePlayer()) 
         { 
-            enemy.Agent.SetDestination(enemy.player.position);
+            enemy.ChangeState(enemy.Chase);
         }
         else
         {
             enemy.ChangeState(enemy.Search);
         }
 
-        if (HasReachedDestination())
-        {
-            // CycleToNextWaypoint();
-        }
+        // if (HasReachedDestination())
+        // {
+        //     // CycleToNextWaypoint();
+        // }
     } 
 
     public void OnExit() 
@@ -57,20 +57,20 @@ public class PatrolState : MonsterIState
     //     MoveToCurrentWaypoint();
     // }
 
-    private bool HasReachedDestination()
-    {
-        if (enemy.Agent == null) return false;
+    // private bool HasReachedDestination()
+    // {
+    //     if (enemy.Agent == null) return false;
 
-        if (enemy.Agent.pathPending) return false;
+    //     if (enemy.Agent.pathPending) return false;
 
-        if (enemy.Agent.remainingDistance <= enemy.Agent.stoppingDistance)
-        {
-            if (!enemy.Agent.hasPath || enemy.Agent.velocity.sqrMagnitude == 0f)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
+    //     if (enemy.Agent.remainingDistance <= enemy.Agent.stoppingDistance)
+    //     {
+    //         if (!enemy.Agent.hasPath || enemy.Agent.velocity.sqrMagnitude == 0f)
+    //         {
+    //             return true;
+    //         }
+    //     }
+    //     return false;
+    // }
 }
 
