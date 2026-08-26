@@ -59,19 +59,24 @@ public class Weapon : MonoBehaviour
         if (weaponBody == null || weaponLight == null) return DOTween.Sequence();
 
         float fadeDuration = Mathf.Max(animationStepLength, 0.01f);
-        Vector3 forwardPosition = _restingBodyLocalPosition + weaponBody.transform.forward * fireballForwardDistance;
-        Vector3 recoilPosition = _restingBodyLocalPosition + -weaponBody.transform.forward * fireballRecoilDistance;
+        Vector3 localForward = weaponBody.transform.localRotation * Vector3.forward;
+        Vector3 forwardPosition = _restingBodyLocalPosition + localForward * fireballForwardDistance;
+        Vector3 recoilPosition = _restingBodyLocalPosition - localForward * fireballRecoilDistance;
 
         weaponLight.intensity = 0f;
         weaponLight.enabled = true;
 
         Sequence sequence = DOTween.Sequence();
+        //Wind up
         sequence.Append(weaponLight.DOIntensity(fireballLightIntensity, fadeDuration).SetEase(Ease.InOutQuad));
         sequence.Join(weaponBody.transform.DOLocalMove(forwardPosition, fadeDuration).SetEase(Ease.InOutQuad));
-        Instantiate(fireBallPrefab, attackPoint.position, transform.rotation);
+        //Shoot fireball
+        sequence.AppendCallback(() => Instantiate(fireBallPrefab, attackPoint.position, transform.rotation));
+        //Recoil
         sequence.Append(weaponBody.transform.DOLocalMove(recoilPosition, fadeDuration * 0.25f).SetEase(Ease.OutQuad));
+        //Return
         sequence.Append(weaponBody.transform.DOLocalMove(_restingBodyLocalPosition, fadeDuration * 0.75f).SetEase(Ease.OutQuad));
-        sequence.Append(weaponLight.DOIntensity(_restingLightIntensity, fadeDuration * 0.5f));
+        sequence.Join(weaponLight.DOIntensity(_restingLightIntensity, fadeDuration * 0.5f));
         sequence.AppendCallback(() => weaponLight.enabled = _restingLightIntensity > 0f);
         sequence.OnComplete(() => _attackSequence = null);
         sequence.OnKill(() =>
@@ -87,7 +92,8 @@ public class Weapon : MonoBehaviour
     Sequence PerformSpearAnimation()
     {
         Sequence sequence = DOTween.Sequence();
-        Vector3 jabPosition = _restingLocalPosition + weaponBody.transform.forward * spearJabDistance;
+        Vector3 localForward = weaponBody.transform.localRotation * Vector3.forward;
+        Vector3 jabPosition = _restingLocalPosition + localForward * spearJabDistance;
         float stepDuration = Mathf.Max(animationStepLength, 0.01f);
 
         sequence.Append(
