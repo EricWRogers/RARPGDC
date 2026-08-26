@@ -115,7 +115,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""Inverse"",
                     ""type"": ""Button"",
-                    ""id"": ""3782374e-0900-4586-a81e-6a5357c66047"",
+                    ""id"": ""0c08875f-e0a4-4f59-908b-724249561582"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -280,7 +280,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""7f39680a-94b2-42a5-b2e6-27e4be6217ca"",
+                    ""id"": ""7c89c515-721e-41b4-a574-43588280f152"",
                     ""path"": ""<Gamepad>/leftTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -291,7 +291,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""b562b773-9851-4ae0-b774-bfe896097dec"",
+                    ""id"": ""b9744fec-4a20-4fd1-9f30-ff367872f205"",
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",

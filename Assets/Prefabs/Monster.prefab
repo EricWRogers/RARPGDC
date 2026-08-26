@@ -139,6 +139,8 @@ MonoBehaviour:
   chaseSpeed: 4
   maxhealth: 0
   health: 0
+  isInversed: 0
+  col: {fileID: 4783111185783825994}
   playerGO: {fileID: 0}
   stunTimer: 0.8
 --- !u!195 &1561786101581237049

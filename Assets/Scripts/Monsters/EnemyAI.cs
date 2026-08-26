@@ -21,6 +21,9 @@ public class EnemyAI : MonoBehaviour
     public int maxhealth;
     public int health;
     bool isDying;
+    [Header("Inverse")]
+    public bool isInversed;
+    public Collider col;
 
     public Vector3 LastKnownPosition { get; set; }
     public ChaseState Chase { get; private set; }
@@ -52,6 +55,9 @@ public class EnemyAI : MonoBehaviour
             Debug.LogError($"WHERE IS THE PLAYER??? {gameObject.name} CANT FIND ANYTHING TAGGED PLAYER!");
         }
 
+        //randomly decides if monster is inversed or not
+        isInversed = Random.value < 0.5f;
+
         Agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
 
         Wait = new WaitState();
@@ -61,9 +67,16 @@ public class EnemyAI : MonoBehaviour
         Stun = new StunState();
     }
 
-    void Start() { ChangeState(Wait); }
+    void Start() 
+    {
+        SetInversion();
+        ChangeState(Wait); 
+    }
 
-    void Update() { currentState?.OnUpdate(); }
+    void Update() 
+    {         
+        currentState?.OnUpdate(); 
+    }
 
     public void ChangeState(MonsterIState nextState)
     {
@@ -151,5 +164,13 @@ public class EnemyAI : MonoBehaviour
     public void SetStateColor(Color color)
     {
         GetComponentInChildren<Renderer>().material.color = color;
+    }
+
+    public void SetInversion()
+    {
+        if (isInversed)
+            col.enabled = false;
+        else
+            col.enabled = true;
     }
 }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,11 +11,25 @@ public class RoomManager : MonoBehaviour
     public GameObject cam;
     public GameObject camSpawnPoint;
     public List<GameObject> rooms;
+    public List<GameObject> enemies;
     public int enemiesLeft;
     private int roomOffset = 0;
 
     public InputAction killEnemyDebug;
     public InputAction newRoomDebug;
+
+    public void Invert()
+    {
+        Debug.Log("Inverse Triggered!");
+
+        foreach (GameObject enemy in enemies)
+        {
+            Debug.Log("Enemy found!");
+            EnemyAI _enemyScript = enemy.GetComponent<EnemyAI>();
+            _enemyScript.isInversed = !_enemyScript.isInversed;
+            _enemyScript.SetInversion();
+        }
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -26,16 +41,16 @@ public class RoomManager : MonoBehaviour
             cam.transform.position = camSpawnPoint.transform.position;
         killEnemyDebug.Enable();
         newRoomDebug.Enable();
+
+        enemies = GameObject.FindGameObjectsWithTag("Enemy").ToList();
     }
 
     public void KillEnemy(GameObject enemy = null) // Enemy dying should call this function and pass in it's own GameObject
     {
         if(enemy)
             Destroy(enemy);
-
         if(--enemiesLeft <= 0)
         {
-
             if (currentDoor != null)
                 currentDoor.GetComponent<CurrentDoor>().UnlockDoor();
         }
@@ -81,6 +96,7 @@ public class RoomManager : MonoBehaviour
             cam.GetComponent<CamManager>().stopFollowing = true;
         }
 
+        enemies = GameObject.FindGameObjectsWithTag("Enemy").ToList();
         enemiesLeft = GameObject.FindGameObjectsWithTag("Enemy").Length;
 
     }
