@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Sword Stats
+  m_text: Shoots ranged fireball
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -336,11 +336,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1554907141937755527}
         m_TargetAssemblyTypeName: WeaponSelectionPROTO, Assembly-CSharp
-        m_MethodName: Mace
-        m_Mode: 1
+        m_MethodName: WeaponChosen
+        m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -986,11 +986,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1554907141937755527}
         m_TargetAssemblyTypeName: WeaponSelectionPROTO, Assembly-CSharp
-        m_MethodName: Spear
-        m_Mode: 1
+        m_MethodName: WeaponChosen
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 7229139403379512753, guid: cbc6ab897cd054345bff706e2491c570, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1481,7 +1481,7 @@ GameObject:
   - component: {fileID: 430165733130917804}
   - component: {fileID: 1316241600587452942}
   m_Layer: 5
-  m_Name: sword
+  m_Name: Staff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1585,18 +1585,18 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 430165733130917804}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1554907141937755527}
         m_TargetAssemblyTypeName: WeaponSelectionPROTO, Assembly-CSharp
-        m_MethodName: Sword
-        m_Mode: 1
+        m_MethodName: WeaponChosen
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 7229139403379512753, guid: d493df21b2399d6498b9827eef354c93, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1804,7 +1804,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Sword
+  m_text: FIREBALL STAFF
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1831,8 +1831,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 55.61
+  m_fontSizeBase: 55.61
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1923,21 +1923,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponSelectionPROTO
   _mainMenu: {fileID: 8873368101661574627}
   player: {fileID: 0}
-  swordPrefab: {fileID: 0}
-  staffPrefab: {fileID: 0}
-  macePrefab: {fileID: 0}
-  defaultSword:
-  - 2
-  - 0.8
-  - 0.1
-  defaultStaff:
-  - 4
-  - 0.8
-  - 0.3
-  defaultMace:
-  - 8
-  - 0.8
-  - 0.15
-  swordText: {fileID: 3835260178038867380}
-  spearText: {fileID: 9211434718236760996}
-  maceText: {fileID: 5759850003033152361}

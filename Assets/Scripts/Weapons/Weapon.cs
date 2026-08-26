@@ -4,6 +4,14 @@ using System.Collections.Generic;
 
 public class Weapon : MonoBehaviour
 {
+    public enum WeaponType
+    {
+        Spear,
+        Fireball,
+        Mace
+    }
+
+    public WeaponType myType;
     public int damage;
     public Transform attackPoint;
     public float attackRange = 1f;
@@ -15,12 +23,22 @@ public class Weapon : MonoBehaviour
     private Vector3 _restingLocalPosition;
     public float spearJabDistance = 0.75f;
     public GameObject weaponBody;
+    public Light weaponLight;
+    public float fireballLightIntensity = 2f;
+    public float fireballForwardDistance = 0.15f;
+    public float fireballRecoilDistance = 0.1f;
+    private Vector3 _restingBodyLocalPosition;
+    private float _restingLightIntensity;
 
     //public GameObject weaponType;
 
     void Awake()
     {
         _restingLocalPosition = transform.localPosition;
+        if (weaponBody != null)
+            _restingBodyLocalPosition = weaponBody.transform.localPosition;
+        if (weaponLight != null)
+            _restingLightIntensity = weaponLight.intensity;
     }
 
     public void Attack()
@@ -28,7 +46,41 @@ public class Weapon : MonoBehaviour
         if (_attackSequence != null && _attackSequence.IsActive()) return;
 
         //play attack animation (dotween!)
-        _attackSequence = PerformSpearAnimation();
+        if(myType == WeaponType.Spear)
+            _attackSequence = PerformSpearAnimation();
+
+        else if(myType == WeaponType.Fireball)
+            _attackSequence = PerformFireballAnimation();
+    }
+
+    Sequence PerformFireballAnimation()
+    {
+        if (weaponBody == null || weaponLight == null) return DOTween.Sequence();
+
+        float fadeDuration = Mathf.Max(animationStepLength, 0.01f);
+        Vector3 forwardPosition = _restingBodyLocalPosition + weaponBody.transform.forward * fireballForwardDistance;
+        Vector3 recoilPosition = _restingBodyLocalPosition + -weaponBody.transform.forward * fireballRecoilDistance;
+
+        weaponLight.intensity = 0f;
+        weaponLight.enabled = true;
+
+        Sequence sequence = DOTween.Sequence();
+        sequence.Append(weaponLight.DOIntensity(fireballLightIntensity, fadeDuration).SetEase(Ease.InOutQuad));
+        sequence.Join(weaponBody.transform.DOLocalMove(forwardPosition, fadeDuration).SetEase(Ease.InOutQuad));
+        // Shoot fireball here
+        sequence.Append(weaponBody.transform.DOLocalMove(recoilPosition, fadeDuration * 0.25f).SetEase(Ease.OutQuad));
+        sequence.Append(weaponBody.transform.DOLocalMove(_restingBodyLocalPosition, fadeDuration * 0.75f).SetEase(Ease.OutQuad));
+        sequence.Append(weaponLight.DOIntensity(_restingLightIntensity, fadeDuration * 0.5f));
+        sequence.AppendCallback(() => weaponLight.enabled = _restingLightIntensity > 0f);
+        sequence.OnComplete(() => _attackSequence = null);
+        sequence.OnKill(() =>
+        {
+            weaponBody.transform.localPosition = _restingBodyLocalPosition;
+            weaponLight.intensity = _restingLightIntensity;
+            weaponLight.enabled = _restingLightIntensity > 0f;
+            _attackSequence = null;
+        });
+        return sequence;
     }
 
     Sequence PerformSpearAnimation()
