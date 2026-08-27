@@ -228,8 +228,12 @@ public class EnemyAI : MonoBehaviour
             yield return null;
         }
 
-        Attack.playerScript.TakeDamage(Attack.damage);
-        Debug.Log("Monster strikes for " + Attack.damage + " damage.");
+        AttackTarget();
+        if (AttackTarget())
+        {
+            Attack.playerScript.TakeDamage(Attack.damage);
+            Debug.Log("Monster strikes for " + Attack.damage + " damage.");
+        }
 
         yield return new WaitForSeconds(0.1f);
         elapsed = 0f;
