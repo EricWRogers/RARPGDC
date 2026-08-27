@@ -25,6 +25,14 @@ public class EnemyAI : MonoBehaviour
     public bool isInversed;
     public Collider col;
 
+    public GameObject playerGO;
+
+    [Header("Stun Settings")]
+    public float stunTimer;
+
+    [Header("Player feedback")]
+    public GameObject bloodSplatter;
+
     public Vector3 LastKnownPosition { get; set; }
     public ChaseState Chase { get; private set; }
     public SearchState Search { get; private set; }
@@ -34,10 +42,7 @@ public class EnemyAI : MonoBehaviour
     public UnityEngine.AI.NavMeshAgent Agent { get; private set; }
     private MonsterIState currentState;
 
-    public GameObject playerGO;
-
-    [Header("Stun Settings")]
-    public float stunTimer;
+    
     
 
     void Awake()
@@ -150,6 +155,11 @@ public class EnemyAI : MonoBehaviour
         health -= damage;
         SetStateColor(Color.red);
         ChangeState(Stun);
+
+        if (bloodSplatter != null)
+        {
+            Instantiate(bloodSplatter, transform.position, Quaternion.identity);
+        }
 
         if (health <= 0)
         {
