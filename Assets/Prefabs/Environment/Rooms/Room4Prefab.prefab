@@ -349,7 +349,7 @@ GameObject:
   - component: {fileID: 8486721437099588261}
   m_Layer: 0
   m_Name: InvisWall (2)
-  m_TagString: Untagged
+  m_TagString: water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -411,7 +411,7 @@ GameObject:
   - component: {fileID: 8795331239138596495}
   m_Layer: 0
   m_Name: InvisWall (5)
-  m_TagString: Untagged
+  m_TagString: water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -473,7 +473,7 @@ GameObject:
   - component: {fileID: 5683241584698510444}
   m_Layer: 0
   m_Name: InvisWall (6)
-  m_TagString: Untagged
+  m_TagString: water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -647,7 +647,7 @@ GameObject:
   - component: {fileID: 3425867541220528796}
   m_Layer: 0
   m_Name: InvisWall (7)
-  m_TagString: Untagged
+  m_TagString: water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -758,7 +758,7 @@ GameObject:
   - component: {fileID: 2610575697714166299}
   m_Layer: 0
   m_Name: InvisWall (4)
-  m_TagString: Untagged
+  m_TagString: water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1113,6 +1113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9433c23b3a7bf64f98138d6c0ab8165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaterCollision
+  UIManager: {fileID: 0}
 --- !u!1 &7416621134056996629
 GameObject:
   m_ObjectHideFlags: 0
@@ -1300,7 +1301,7 @@ GameObject:
   - component: {fileID: 7987515966216452877}
   m_Layer: 0
   m_Name: InvisWall (3)
-  m_TagString: Untagged
+  m_TagString: water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
