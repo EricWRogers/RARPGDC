@@ -39,6 +39,8 @@ public class RoomManager : MonoBehaviour
         {
             Debug.Log("Inverting enemy...");
             EnemyAI _enemyScript = enemy.GetComponent<EnemyAI>();
+
+            Debug.LogWarning(enemy.name);
             
             if (_enemyScript == null)
             {
@@ -72,6 +74,9 @@ public class RoomManager : MonoBehaviour
     {
         if(enemy)
             Destroy(enemy);
+
+        enemies.Remove(enemy);
+
         if(--enemiesLeft <= 0)
         {
             if (currentDoor != null)
