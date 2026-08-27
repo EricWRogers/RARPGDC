@@ -1,14 +1,15 @@
+using System.Collections;
 using UnityEngine;
 
 public class AttackState : MonsterIState
 {
     private EnemyAI enemy;
     private float attackCooldown = 2.5f;
-    private float nextAttackTime = 0f;
+    public float nextAttackTime = 0f;
     [Header("Damage")]
-    public float damage;
+    public int damage;
 
-    private SimplePlayerController playerScript;
+    public SimplePlayerController playerScript;
 
     public void OnEnter(EnemyAI context)
     {
@@ -38,21 +39,22 @@ public class AttackState : MonsterIState
 
         if (nextAttackTime >= attackCooldown)
         {
-            ExecuteAttack();
+            // ExecuteAttack();
+            enemy.AttackFunction();
+            nextAttackTime = 0f;
         }
     }
 
-    private void ExecuteAttack()
-    {
-        //enemy.GetComponent<Animator>().SetTrigger("Attack");
-        damage = Random.Range(1f, 2f);
+    // private void ExecuteAttack()
+    // {
+    //     //enemy.GetComponent<Animator>().SetTrigger("Attack");
+        
+        
 
-        enemy.SetStateColor(Color.pink);
-        playerScript.TakeDamage(damage);
+        
+    // }
 
-        nextAttackTime = 0f;
-        Debug.Log("Monster strikes for " + damage + " damage.");
-    }
+    
 
     public void OnExit()
     {
