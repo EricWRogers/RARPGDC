@@ -23,21 +23,37 @@ public class RoomManager : MonoBehaviour
 
     public void Invert()
     {
-        Debug.Log("Inverse Triggered!");
+        //Debug.Log("Inverse Triggered!");
         if (UIManager != null)
         {
             UIManager _UIScript = UIManager.GetComponent<UIManager>();
             _UIScript.FlipWorld();
         }
-        else {Debug.LogError("Room Manager Can't find UI Manager");};
+        else 
+        {
+            Debug.LogError("Room Manager Can't find UI Manager");
+            return;
+        };
+
         foreach (GameObject enemy in enemies)
         {
+            Debug.Log("Inverting enemy...");
             EnemyAI _enemyScript = enemy.GetComponent<EnemyAI>();
+            
+            if (_enemyScript == null)
+            {
+                Debug.LogError("cannot find enemy script");
+                return;
+            }
             _enemyScript.isInversed = !_enemyScript.isInversed;
             _enemyScript.SetInversion();
         }
     }
 
+    void Awake()
+    {
+        enemies = new List<GameObject>();
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -106,7 +122,6 @@ public class RoomManager : MonoBehaviour
 
         enemies = GameObject.FindGameObjectsWithTag("Enemy").ToList();
         enemiesLeft = GameObject.FindGameObjectsWithTag("Enemy").Length;
-
     }
 
     public void Update()

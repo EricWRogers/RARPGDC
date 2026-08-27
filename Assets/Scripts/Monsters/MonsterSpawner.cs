@@ -20,6 +20,7 @@ public class MonsterSpawner : MonoBehaviour
                 continue;
 
             Instantiate(monsterPrefab, child.position, Quaternion.identity);
+            rm.enemies.Add(child.gameObject);
             monstersSpawned++;
 
             if(--monsterNum <= 0)
