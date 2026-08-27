@@ -1,10 +1,16 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WeaponSelectionPROTO : MonoBehaviour
 {
     public GameObject _mainMenu;
     public GameObject player;
     private SimplePlayerController playerScript; 
+    public Text abilityText;
+    //ability images
+    public GameObject dashImg;
+    public GameObject chargeImg;
+    public GameObject invisImg;
 
     // public List<float> defaultSword = new List<float> {2f, 0.8f, 0.1f};
     // public List<float> defaultStaff = new List<float> {4f, 0.8f, 0.3f};
@@ -67,5 +73,32 @@ public class WeaponSelectionPROTO : MonoBehaviour
         Debug.Log("weapon selected");
         Time.timeScale = 1;
         _mainMenu.SetActive(false);
+        
     }
+    public void ChangeAbilityText()
+    {
+        if (playerScript.myASkill == ActionSkill.Dash) //dash ability
+        {
+            abilityText.text = "Dash Ability";
+            dashImg.SetActive(true);
+            chargeImg.SetActive(false);
+            invisImg.SetActive(false);
+        }
+        else if (playerScript.myASkill == ActionSkill.Charge) //charge ablilty
+        {
+            abilityText.text = "Charge Ability";
+            dashImg.SetActive(false);
+            chargeImg.SetActive(true);
+            invisImg.SetActive(false);
+        }
+        else if (playerScript.myASkill == ActionSkill.Invis) //invisability
+        {
+            abilityText.text = "Invisibility";
+            dashImg.SetActive(false);
+            chargeImg.SetActive(false);
+            invisImg.SetActive(true);
+        }
+    }
+
+
 }

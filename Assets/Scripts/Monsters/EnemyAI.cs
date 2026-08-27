@@ -3,6 +3,8 @@ using System.Collections;
 
 public class EnemyAI : MonoBehaviour
 {
+    public RoomManager rm;
+
     [Header("Detection settings")]
     public Transform player { get; private set; }
     public float sightRange = 8f;     
@@ -24,7 +26,9 @@ public class EnemyAI : MonoBehaviour
     bool isDying;
     [Header("Inverse")]
     public bool isInversed;
-    public Collider col;
+    public MeshRenderer enemyRenderer;
+    public Material baseMat;
+    public Material inverseMat;
 
     public GameObject playerGO;
 
@@ -52,6 +56,8 @@ public class EnemyAI : MonoBehaviour
 
     void Awake()
     {
+        rm = FindFirstObjectByType<RoomManager>();
+
         maxhealth = Random.Range(6, 9);
         health = maxhealth;
 
@@ -66,7 +72,14 @@ public class EnemyAI : MonoBehaviour
         }
 
         //randomly decides if monster is inversed or not
-        isInversed = Random.value < 0.5f;
+        if(rm.inRoomWithWater)
+        {
+            isInversed = Random.value < 0.5f;
+        } 
+        else
+        {
+            isInversed = false;
+        }
 
         Agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
 
@@ -107,7 +120,7 @@ public class EnemyAI : MonoBehaviour
 
     public bool CanSeePlayer()
     {
-        if (player == null)
+        if (player == null || player.GetComponent<SimplePlayerController>()._isInvis)
         {
             return false;
         }
@@ -183,10 +196,12 @@ public class EnemyAI : MonoBehaviour
 
     public void SetInversion()
     {
+
         if (isInversed)
-            col.enabled = false;
+            enemyRenderer.material = inverseMat;
         else
-            col.enabled = true;
+            enemyRenderer.material = baseMat;
+            
     }
 
     protected IEnumerator MonsterIsAttacking()

@@ -69,7 +69,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 5370f6d6150c7974199cdbbdfc686d0d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -128,6 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30dcd9e08e7c04068864bec5d0515421, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
+  rm: {fileID: 0}
   sightRange: 8
   obstacleMask:
     serializedVersion: 2
@@ -140,9 +141,11 @@ MonoBehaviour:
   maxhealth: 0
   health: 0
   isInversed: 0
-  col: {fileID: 4783111185783825994}
+  enemyRenderer: {fileID: 8599001672340077243}
+  baseMat: {fileID: 2100000, guid: 5370f6d6150c7974199cdbbdfc686d0d, type: 2}
+  inverseMat: {fileID: 2100000, guid: b32a8981fd90f844da80a5cb5fe575da, type: 2}
   playerGO: {fileID: 0}
-  stunTimer: 0.8
+  stunTimer: 0.6
   bloodSplatter: {fileID: 6991919705033840421, guid: caee58ce338aa4e1099352996f0cfd5c, type: 3}
   lungeAmount: 2
   tiltAmount: 50

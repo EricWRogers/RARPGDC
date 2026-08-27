@@ -2,14 +2,15 @@ using UnityEngine;
 using DG.Tweening;
 using System.Collections.Generic;
 
+public enum WeaponType
+{
+    Spear,
+    Fireball,
+    Mace
+}
+
 public class Weapon : MonoBehaviour
 {
-    public enum WeaponType
-    {
-        Spear,
-        Fireball,
-        Mace
-    }
 
     public WeaponType myType;
     public int damage;
@@ -188,7 +189,7 @@ public class Weapon : MonoBehaviour
         foreach (Collider enemy in hitEnemies)
         {
             EnemyAI target = enemy.GetComponentInParent<EnemyAI>();
-            if (target == null || !enemiesHitThisAttack.Add(target)) continue;
+            if (target == null || !enemiesHitThisAttack.Add(target) || target.isInversed) continue;
 
             target.TakeDamage(damage);
             Debug.Log("Hit " + target.name + " for " + damage + " damage.");

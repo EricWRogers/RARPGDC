@@ -14,23 +14,46 @@ public class RoomManager : MonoBehaviour
     public List<GameObject> enemies;
     public int enemiesLeft;
     private int roomOffset = 0;
+    public bool inRoomWithWater = false;
 
     public InputAction killEnemyDebug;
     public InputAction newRoomDebug;
 
+    public GameObject UIManager;
+
     public void Invert()
     {
-        Debug.Log("Inverse Triggered!");
+        //Debug.Log("Inverse Triggered!");
+        if (UIManager != null)
+        {
+            UIManager _UIScript = UIManager.GetComponent<UIManager>();
+            _UIScript.FlipWorld();
+        }
+        else 
+        {
+            Debug.LogError("Room Manager Can't find UI Manager");
+            return;
+        };
 
         foreach (GameObject enemy in enemies)
         {
-            Debug.Log("Enemy found!");
+            Debug.Log("Inverting enemy...");
             EnemyAI _enemyScript = enemy.GetComponent<EnemyAI>();
+            
+            if (_enemyScript == null)
+            {
+                Debug.LogError("cannot find enemy script");
+                return;
+            }
             _enemyScript.isInversed = !_enemyScript.isInversed;
             _enemyScript.SetInversion();
         }
     }
 
+    void Awake()
+    {
+        enemies = new List<GameObject>();
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -49,6 +72,9 @@ public class RoomManager : MonoBehaviour
     {
         if(enemy)
             Destroy(enemy);
+
+        enemies.Remove(enemy);
+
         if(--enemiesLeft <= 0)
         {
             if (currentDoor != null)
@@ -59,8 +85,9 @@ public class RoomManager : MonoBehaviour
     // Randomly choose new room, place player at spawn, move camera, remove spawn marker, count enemies, destroy current door, find new door 
     public void NewRoom()
     {
-
-        GameObject newRoom = Instantiate(rooms[Random.Range(0, rooms.Count)], new Vector3(roomOffset += 60, 0, 0), Quaternion.identity);
+        GameObject nextRoom = rooms[Random.Range(0, rooms.Count)];
+        if(nextRoom.name != "Room1Prefab") inRoomWithWater = true;
+        GameObject newRoom = Instantiate(nextRoom, new Vector3(roomOffset += 60, 0, 0), Quaternion.identity);
         camSpawnPoint = newRoom.GetComponentInChildren<CamSpawnPoint>()?.gameObject;
         playerSpawnPoint = newRoom.GetComponentInChildren<PlayerSpawnPoint>(true)?.gameObject;
         currentDoor = newRoom.GetComponentInChildren<CurrentDoor>(true)?.gameObject;
@@ -98,7 +125,6 @@ public class RoomManager : MonoBehaviour
 
         enemies = GameObject.FindGameObjectsWithTag("Enemy").ToList();
         enemiesLeft = GameObject.FindGameObjectsWithTag("Enemy").Length;
-
     }
 
     public void Update()

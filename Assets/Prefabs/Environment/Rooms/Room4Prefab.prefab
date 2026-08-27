@@ -242,7 +242,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6745221699280060694
 Transform:
   m_ObjectHideFlags: 0
@@ -1055,6 +1055,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8657164268925391276}
   - component: {fileID: 5027481426568302297}
+  - component: {fileID: 8390817432086014365}
   m_Layer: 0
   m_Name: Water
   m_TagString: water
@@ -1100,6 +1101,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 12.82, z: 1.08}
   m_Center: {x: 0, y: 0, z: -0.02}
+--- !u!114 &8390817432086014365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7294030150516331583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9433c23b3a7bf64f98138d6c0ab8165, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WaterCollision
 --- !u!1 &7416621134056996629
 GameObject:
   m_ObjectHideFlags: 0
