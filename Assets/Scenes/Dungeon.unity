@@ -929,6 +929,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1444840764}
     - target: {fileID: 5202189845998014370, guid: 8a7bbd9eb8e297e4794b52966935c303, type: 3}
+      propertyPath: chargeDistance
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5202189845998014370, guid: 8a7bbd9eb8e297e4794b52966935c303, type: 3}
+      propertyPath: chargeDuration
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5202189845998014370, guid: 8a7bbd9eb8e297e4794b52966935c303, type: 3}
       propertyPath: aSkillCoolDownSlider
       value: 
       objectReference: {fileID: 1961195599}

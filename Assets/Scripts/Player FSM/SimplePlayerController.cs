@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -7,8 +8,9 @@ public enum ActionSkill
 {
     None,
     Dash,
-    Invis,
-    Charge
+    Charge,
+    Invis
+    
 }
 
 public class SimplePlayerController: MonoBehaviour, InputSystem_Actions.IPlayerActions
@@ -24,6 +26,8 @@ public class SimplePlayerController: MonoBehaviour, InputSystem_Actions.IPlayerA
     private Vector3 _lastMovementDirection = Vector3.forward;
     private bool _isDashing;
     private Tween _dashTween;
+    private bool _isCharging;
+    private readonly HashSet<EnemyAI> _chargeEnemiesHit = new HashSet<EnemyAI>();
     public CharacterController controller;
     public bool aimingDisabled = false;
 
@@ -49,7 +53,10 @@ public class SimplePlayerController: MonoBehaviour, InputSystem_Actions.IPlayerA
     public float dashDuration = 0.2f;
     public float dashCooldown = 0.5f;
     public float dashCollisionBuffer = 0.05f;
-    private float _dashCooldownTimer;
+    public float chargeDistance = 5f;
+    public float chargeDuration = 0.4f;
+    public float chargeCooldown = 1.5f;
+    private float cooldownTimer;
 
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -86,9 +93,7 @@ public class SimplePlayerController: MonoBehaviour, InputSystem_Actions.IPlayerA
 
     void Awake()
     {
-        // TEMP
-        // myASkill = (ActionSkill)Random.Range(1, 4);
-        myASkill = ActionSkill.Dash;
+        myASkill = (ActionSkill)Random.Range(1, 3);
         health = maxHealth;
     }
     void Start()
@@ -102,17 +107,17 @@ public class SimplePlayerController: MonoBehaviour, InputSystem_Actions.IPlayerA
 
         if (aSkillCoolDownSlider != null)
         {
-            aSkillCoolDownSlider.maxValue = dashCooldown;
+            aSkillCoolDownSlider.maxValue = GetSkillCooldown();
             aSkillCoolDownSlider.value = 0f;
         }
     }
 
     void Update()
     {   
-        _dashCooldownTimer = Mathf.Max(_dashCooldownTimer -= Time.deltaTime, 0f);
+        cooldownTimer = Mathf.Max(cooldownTimer -= Time.deltaTime, 0f);
         if (aSkillCoolDownSlider != null)
         {
-            aSkillCoolDownSlider.value = dashCooldown - _dashCooldownTimer;
+            aSkillCoolDownSlider.value = GetSkillCooldown() - cooldownTimer;
         }
 
         if (health <= 0)
@@ -139,7 +144,6 @@ public class SimplePlayerController: MonoBehaviour, InputSystem_Actions.IPlayerA
 
         if (actionSkill.WasPressedThisFrame())
         {
-            Debug.Log("ASKill!");
             HandleActionSkill();
         }
 
@@ -151,27 +155,59 @@ public class SimplePlayerController: MonoBehaviour, InputSystem_Actions.IPlayerA
 
     void HandleActionSkill()
     {
-        if (myASkill == ActionSkill.Dash && !_isDashing && _dashCooldownTimer <= 0f)
-        {
-            _isDashing = true;
-            _dashCooldownTimer = dashCooldown;
-            Vector3 dashTarget = GetDashTarget();
-            float duration = Mathf.Max(dashDuration, 0.01f);
+        if (cooldownTimer > 0f || _isDashing || _isCharging) return;
 
-            _dashTween = transform.DOMove(dashTarget, duration)
-                .SetEase(Ease.OutQuad)
-                .OnComplete(() =>
-                {
-                    _isDashing = false;
-                    _dashTween = null;
-                });
+        if (myASkill == ActionSkill.Dash)
+        {
+            StartDash(dashDistance, dashDuration, dashCooldown);
+        }
+        else if (myASkill == ActionSkill.Charge)
+        {
+            StartCharge();
         }
     }
 
-    Vector3 GetDashTarget()
+    void StartDash(float distance, float duration, float cooldown)
+    {
+        _isDashing = true;
+        cooldownTimer = cooldown;
+        Vector3 dashTarget = GetSkillTarget(distance);
+
+        _dashTween = transform.DOMove(dashTarget, Mathf.Max(duration, 0.01f))
+            .SetEase(Ease.OutQuad)
+            .OnComplete(() =>
+            {
+                _isDashing = false;
+                _dashTween = null;
+            });
+    }
+
+    void StartCharge()
+    {
+        _isCharging = true;
+        cooldownTimer = chargeCooldown;
+        _chargeEnemiesHit.Clear();
+        Vector3 chargeTarget = GetSkillTarget(chargeDistance);
+
+        _dashTween = transform.DOMove(chargeTarget, Mathf.Max(chargeDuration, 0.01f))
+            .SetEase(Ease.OutQuad)
+            .OnUpdate(DamageEnemiesDuringCharge)
+            .OnComplete(() =>
+            {
+                _isCharging = false;
+                _dashTween = null;
+            });
+    }
+
+    float GetSkillCooldown()
+    {
+        return myASkill == ActionSkill.Charge ? chargeCooldown : dashCooldown;
+    }
+
+    Vector3 GetSkillTarget(float distance)
     {
         Vector3 direction = _lastMovementDirection.normalized;
-        float allowedDistance = dashDistance;
+        float allowedDistance = distance;
         float radius = controller.radius;
         Vector3 center = transform.TransformPoint(controller.center);
         float halfHeight = Mathf.Max(controller.height * 0.5f - radius, 0f);
@@ -183,7 +219,7 @@ public class SimplePlayerController: MonoBehaviour, InputSystem_Actions.IPlayerA
             capsuleTop,
             radius,
             direction,
-            dashDistance,
+            distance,
             Physics.AllLayers,
             QueryTriggerInteraction.Ignore);
 
@@ -203,10 +239,32 @@ public class SimplePlayerController: MonoBehaviour, InputSystem_Actions.IPlayerA
         return transform.position + direction * allowedDistance;
     }
 
+    void DamageEnemiesDuringCharge()
+    {
+        Vector3 center = transform.TransformPoint(controller.center);
+        float halfHeight = Mathf.Max(controller.height * 0.5f - controller.radius, 0f);
+        Vector3 capsuleBottom = center + Vector3.down * halfHeight;
+        Vector3 capsuleTop = center + Vector3.up * halfHeight;
+        Collider[] contacts = Physics.OverlapCapsule(
+            capsuleBottom,
+            capsuleTop,
+            controller.radius,
+            Physics.AllLayers,
+            QueryTriggerInteraction.Ignore);
+
+        foreach (Collider contact in contacts)
+        {
+            EnemyAI enemy = contact.GetComponentInParent<EnemyAI>();
+            if (enemy == null || !_chargeEnemiesHit.Add(enemy)) continue;
+
+            enemy.TakeDamage(weaponScript.damage * 2);
+        }
+    }
+
     void Movement()
     {
         AimWeaponAtMouse();
-        if (_isDashing) return;
+        if (_isDashing || _isCharging) return;
 
         //gravity
         _isGrounded = controller.isGrounded;
@@ -247,17 +305,10 @@ public class SimplePlayerController: MonoBehaviour, InputSystem_Actions.IPlayerA
 
     public void TakeDamage(float damage)
     {
-        if (_isDashing) return;
+        if (_isDashing || _isCharging) return;
 
         health -= damage;
     }
-
-    //stretch goal
-    public void Dodge()
-    {
-        
-    }
-
     public void Die()
     {
         speed = 0;
