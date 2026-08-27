@@ -634,6 +634,7 @@ MonoBehaviour:
   - {fileID: 6029994922071299850, guid: 82af5be94c590b448a10048f8a144dad, type: 3}
   enemies: []
   enemiesLeft: 3
+  inRoomWithWater: 0
   killEnemyDebug:
     m_Name: killDebug
     m_Type: 1
@@ -927,6 +928,10 @@ PrefabInstance:
       propertyPath: GameOverScreen
       value: 
       objectReference: {fileID: 1444840764}
+    - target: {fileID: 5202189845998014370, guid: 8a7bbd9eb8e297e4794b52966935c303, type: 3}
+      propertyPath: aSkillCoolDownSlider
+      value: 
+      objectReference: {fileID: 1961195599}
     - target: {fileID: 7064713551955821967, guid: 8a7bbd9eb8e297e4794b52966935c303, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.31
@@ -1013,6 +1018,10 @@ PrefabInstance:
       propertyPath: m_MaxValue
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 1200699543797571382, guid: 2219246798c7c0b4d979da1d00d71e18, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1275373975524739031, guid: 2219246798c7c0b4d979da1d00d71e18, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1047,7 +1056,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1666987149539087192, guid: 2219246798c7c0b4d979da1d00d71e18, type: 3}
       propertyPath: m_Name
-      value: HealthBar
+      value: HeadsUp
       objectReference: {fileID: 0}
     - target: {fileID: 2036493493655411052, guid: 2219246798c7c0b4d979da1d00d71e18, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1056,6 +1065,14 @@ PrefabInstance:
     - target: {fileID: 2036493493655411052, guid: 2219246798c7c0b4d979da1d00d71e18, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2447746457843220519, guid: 2219246798c7c0b4d979da1d00d71e18, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5614423585227258846, guid: 2219246798c7c0b4d979da1d00d71e18, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -470
       objectReference: {fileID: 0}
     - target: {fileID: 5807304929993938026, guid: 2219246798c7c0b4d979da1d00d71e18, type: 3}
       propertyPath: player
@@ -1110,6 +1127,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2219246798c7c0b4d979da1d00d71e18, type: 3}
+--- !u!114 &1961195599 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6305522551249196583, guid: 2219246798c7c0b4d979da1d00d71e18, type: 3}
+  m_PrefabInstance: {fileID: 1961195598}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
 --- !u!1 &2041407882 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8884785758118549128, guid: e939fda0ec7a1934dbb35def5c96b2ad, type: 3}
