@@ -11,13 +11,13 @@ public class Fireball : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy"))
+        if (other.CompareTag("Enemy") && !other.GetComponent<EnemyAI>().isInversed)
         {
             other.GetComponent<EnemyAI>().TakeDamage(
                 GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Weapon>().damage);
         }
 
-        if(!other.GetComponentInChildren<SimplePlayerController>() && !other.GetComponentInParent<SimplePlayerController>())
+        if(!other.GetComponentInChildren<SimplePlayerController>() && !other.GetComponentInParent<SimplePlayerController>() && !other.CompareTag("water"))
             Destroy(gameObject);
     }
 }
