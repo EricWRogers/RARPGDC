@@ -16,6 +16,7 @@ public enum ActionSkill
 public class SimplePlayerController: MonoBehaviour, InputSystem_Actions.IPlayerActions
 {
     public ActionSkill myASkill;
+    public RoomManager rm;
 
     [Header("Speed and Acceleration")]
     public float speed;
@@ -27,6 +28,7 @@ public class SimplePlayerController: MonoBehaviour, InputSystem_Actions.IPlayerA
     private bool _isDashing;
     private Tween _dashTween;
     private bool _isCharging;
+    public bool _isInvis;
     private readonly HashSet<EnemyAI> _chargeEnemiesHit = new HashSet<EnemyAI>();
     public CharacterController controller;
     public bool aimingDisabled = false;
@@ -59,6 +61,9 @@ public class SimplePlayerController: MonoBehaviour, InputSystem_Actions.IPlayerA
     public float chargeDistance = 5f;
     public float chargeDuration = 0.4f;
     public float chargeCooldown = 1.5f;
+    public float invisCooldown = 5.0f;
+    public float invisTimer = 3.0f;
+    private float invisIter = 0.0f;
     private float cooldownTimer;
 
     public void OnMove(InputAction.CallbackContext context)
@@ -102,7 +107,8 @@ public class SimplePlayerController: MonoBehaviour, InputSystem_Actions.IPlayerA
 
     void Awake()
     {
-        myASkill = (ActionSkill)Random.Range(1, 3);
+        rm = FindFirstObjectByType<RoomManager>();
+        myASkill = (ActionSkill)Random.Range(1, 4);
         health = maxHealth;
     }
     void Start()
@@ -158,6 +164,16 @@ public class SimplePlayerController: MonoBehaviour, InputSystem_Actions.IPlayerA
             HandleActionSkill();
         }
 
+        if (_isInvis)
+        {
+            if((invisIter += Time.deltaTime) >= invisTimer)
+            {
+                invisIter = 0.0f;
+                _isInvis = false;
+                GetComponentInChildren<SpriteRenderer>().enabled = true;
+            }
+        }
+
         Movement();
 
 
@@ -166,25 +182,30 @@ public class SimplePlayerController: MonoBehaviour, InputSystem_Actions.IPlayerA
 
     void HandleActionSkill()
     {
-        if (cooldownTimer > 0f || _isDashing || _isCharging) return;
+        if (cooldownTimer > 0f || _isDashing || _isCharging || _isInvis) return;
 
         if (myASkill == ActionSkill.Dash)
         {
-            StartDash(dashDistance, dashDuration, dashCooldown);
+            StartDash();
         }
         else if (myASkill == ActionSkill.Charge)
         {
             StartCharge();
         }
+        else if(myASkill == ActionSkill.Invis)
+        {
+            StartInvis();
+        }
+
     }
 
-    void StartDash(float distance, float duration, float cooldown)
+    void StartDash()
     {
         _isDashing = true;
-        cooldownTimer = cooldown;
-        Vector3 dashTarget = GetSkillTarget(distance);
+        cooldownTimer = dashCooldown;
+        Vector3 dashTarget = GetSkillDest(dashDistance);
 
-        _dashTween = transform.DOMove(dashTarget, Mathf.Max(duration, 0.01f))
+        _dashTween = transform.DOMove(dashTarget, Mathf.Max(dashDuration, 0.01f))
             .SetEase(Ease.OutQuad)
             .OnComplete(() =>
             {
@@ -198,7 +219,7 @@ public class SimplePlayerController: MonoBehaviour, InputSystem_Actions.IPlayerA
         _isCharging = true;
         cooldownTimer = chargeCooldown;
         _chargeEnemiesHit.Clear();
-        Vector3 chargeTarget = GetSkillTarget(chargeDistance);
+        Vector3 chargeTarget = GetSkillDest(chargeDistance);
 
         _dashTween = transform.DOMove(chargeTarget, Mathf.Max(chargeDuration, 0.01f))
             .SetEase(Ease.OutQuad)
@@ -210,12 +231,37 @@ public class SimplePlayerController: MonoBehaviour, InputSystem_Actions.IPlayerA
             });
     }
 
-    float GetSkillCooldown()
+    void StartInvis()
     {
-        return myASkill == ActionSkill.Charge ? chargeCooldown : dashCooldown;
+        _isInvis = true;
+        cooldownTimer = invisCooldown;
+
+        GetComponentInChildren<SpriteRenderer>().enabled = false;
+
+        // enemies know to stop looking when player is invis
     }
 
-    Vector3 GetSkillTarget(float distance)
+    float GetSkillCooldown()
+    {
+        //return myASkill == ActionSkill.Charge ? chargeCooldown : dashCooldown;
+        switch (myASkill)
+        {
+            case ActionSkill.Dash:
+                return dashCooldown;
+
+            case ActionSkill.Charge:
+                return chargeCooldown;
+
+            case ActionSkill.Invis:
+                return invisCooldown;
+
+            default:
+                return 0.0f;
+        }
+
+    }
+
+    Vector3 GetSkillDest(float distance)
     {
         Vector3 direction = _lastMovementDirection.normalized;
         float allowedDistance = distance;

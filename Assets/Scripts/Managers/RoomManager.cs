@@ -39,8 +39,6 @@ public class RoomManager : MonoBehaviour
         {
             Debug.Log("Inverting enemy...");
             EnemyAI _enemyScript = enemy.GetComponent<EnemyAI>();
-
-            Debug.LogWarning(enemy.name);
             
             if (_enemyScript == null)
             {

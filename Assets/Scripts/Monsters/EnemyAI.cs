@@ -115,7 +115,7 @@ public class EnemyAI : MonoBehaviour
 
     public bool CanSeePlayer()
     {
-        if (player == null)
+        if (player == null || player.GetComponent<SimplePlayerController>()._isInvis)
         {
             return false;
         }
