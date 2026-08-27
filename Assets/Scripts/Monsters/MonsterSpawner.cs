@@ -11,7 +11,7 @@ public class MonsterSpawner : MonoBehaviour
         rm = FindFirstObjectByType<RoomManager>();
 
         int monsterNum = Random.Range(1, maxMonsters + 1);
-        rm.enemiesLeft = monsterNum;
+        int monstersSpawned = 0;
 
         foreach(Transform child in transform.GetComponentsInChildren<Transform>())
         {
@@ -20,10 +20,13 @@ public class MonsterSpawner : MonoBehaviour
                 continue;
 
             Instantiate(monsterPrefab, child.position, Quaternion.identity);
+            monstersSpawned++;
 
             if(--monsterNum <= 0)
                 break;
         }
+        
+        rm.enemiesLeft = monstersSpawned;
     }
 
 
