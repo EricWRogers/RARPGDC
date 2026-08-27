@@ -178,6 +178,37 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!1 &365738135821328239
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6907786776754306272}
+  m_Layer: 0
+  m_Name: SpawnPoint (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6907786776754306272
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 365738135821328239}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.78, y: 0.5, z: -8.94}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5330160772304496577}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2526005716660373755
 GameObject:
   m_ObjectHideFlags: 0
@@ -1481,6 +1512,37 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!1 &7781994635775918612
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4690834824942581268}
+  m_Layer: 0
+  m_Name: SpawnPoint (4)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4690834824942581268
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7781994635775918612}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.63, y: 0.5, z: -9.37}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5330160772304496577}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8476361334848212773
 GameObject:
   m_ObjectHideFlags: 0
@@ -1492,6 +1554,7 @@ GameObject:
   - component: {fileID: 1343360348834837717}
   - component: {fileID: 5210650500885389262}
   - component: {fileID: 7109139855742877777}
+  - component: {fileID: 5730762277585764807}
   m_Layer: 0
   m_Name: Water (2)
   m_TagString: water
@@ -1556,6 +1619,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 53.85, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5730762277585764807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8476361334848212773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9433c23b3a7bf64f98138d6c0ab8165, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WaterCollision
 --- !u!1 &8660809213520756638
 GameObject:
   m_ObjectHideFlags: 0
@@ -1902,7 +1977,13 @@ PrefabInstance:
       objectReference: {fileID: 5255903421058279154, guid: fcfa4de15548d439a930377538ca2ef6, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2570445573283747042, guid: 30b72b37a2bab3d448e08099cea051cc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6907786776754306272}
+    - targetCorrespondingSourceObject: {fileID: 2570445573283747042, guid: 30b72b37a2bab3d448e08099cea051cc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4690834824942581268}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30b72b37a2bab3d448e08099cea051cc, type: 3}
 --- !u!4 &5330160772304496577 stripped

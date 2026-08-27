@@ -25,6 +25,9 @@ public class EnemyAI : MonoBehaviour
     bool isDying;
     [Header("Inverse")]
     public bool isInversed;
+    public MeshRenderer enemyRenderer;
+    public Material baseMat;
+    public Material inverseMat;
 
     public GameObject playerGO;
 
@@ -65,7 +68,15 @@ public class EnemyAI : MonoBehaviour
 
         //randomly decides if monster is inversed or not
         if(rm.inRoomWithWater)
+        {
+            Debug.Log("I think that this room has water");
             isInversed = Random.value < 0.5f;
+        } 
+        else
+        {
+            Debug.Log("I don't see any water");
+            isInversed = false;
+        }
 
         Agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
 
@@ -76,9 +87,16 @@ public class EnemyAI : MonoBehaviour
         Stun = new StunState();
     }
 
-    void Start() {ChangeState(Wait);}
+    void Start() 
+    {
+        SetInversion();
+        ChangeState(Wait); 
+    }
 
-    void Update() {currentState?.OnUpdate();}
+    void Update() 
+    {         
+        currentState?.OnUpdate(); 
+    }
 
     public void ChangeState(MonsterIState nextState)
     {
@@ -173,4 +191,13 @@ public class EnemyAI : MonoBehaviour
         GetComponentInChildren<Renderer>().material.color = color;
     }
 
+    public void SetInversion()
+    {
+
+        if (isInversed)
+            enemyRenderer.material = inverseMat;
+        else
+            enemyRenderer.material = baseMat;
+            
+    }
 }

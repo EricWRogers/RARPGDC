@@ -38,6 +38,9 @@ public class SimplePlayerController: MonoBehaviour, InputSystem_Actions.IPlayerA
     [Header("Combat")]
     public GameObject weapon;
     public Weapon weaponScript;
+    [Header("Inversion")]
+    public bool isNearWater;
+
     [Header("Appearance")]
     public SpriteRenderer sprite;
 
@@ -86,9 +89,15 @@ public class SimplePlayerController: MonoBehaviour, InputSystem_Actions.IPlayerA
     }
     public void OnInverse(InputAction.CallbackContext context)
     {
-        GameObject _rm = GameObject.Find("RoomManager");
-        RoomManager _rmS = _rm.GetComponent<RoomManager>();
-        _rmS.Invert();
+        if (!context.performed) return;
+        
+        if (isNearWater)
+        {
+            GameObject _rm = GameObject.Find("RoomManager");
+            RoomManager _rmS = _rm.GetComponent<RoomManager>();
+            _rmS.Invert();
+        }
+        else return;
     }
 
     void Awake()
@@ -110,6 +119,8 @@ public class SimplePlayerController: MonoBehaviour, InputSystem_Actions.IPlayerA
             aSkillCoolDownSlider.maxValue = GetSkillCooldown();
             aSkillCoolDownSlider.value = 0f;
         }
+
+        isNearWater = false;
     }
 
     void Update()
