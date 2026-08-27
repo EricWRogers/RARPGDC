@@ -25,7 +25,6 @@ public class EnemyAI : MonoBehaviour
     bool isDying;
     [Header("Inverse")]
     public bool isInversed;
-    public Collider col;
 
     public GameObject playerGO;
 
@@ -77,16 +76,9 @@ public class EnemyAI : MonoBehaviour
         Stun = new StunState();
     }
 
-    void Start() 
-    {
-        SetInversion();
-        ChangeState(Wait); 
-    }
+    void Start() {ChangeState(Wait);}
 
-    void Update() 
-    {         
-        currentState?.OnUpdate(); 
-    }
+    void Update() {currentState?.OnUpdate();}
 
     public void ChangeState(MonsterIState nextState)
     {
@@ -181,11 +173,4 @@ public class EnemyAI : MonoBehaviour
         GetComponentInChildren<Renderer>().material.color = color;
     }
 
-    public void SetInversion()
-    {
-        if (isInversed)
-            col.enabled = false;
-        else
-            col.enabled = true;
-    }
 }

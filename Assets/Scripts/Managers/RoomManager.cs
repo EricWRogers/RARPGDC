@@ -25,10 +25,8 @@ public class RoomManager : MonoBehaviour
 
         foreach (GameObject enemy in enemies)
         {
-            Debug.Log("Enemy found!");
             EnemyAI _enemyScript = enemy.GetComponent<EnemyAI>();
             _enemyScript.isInversed = !_enemyScript.isInversed;
-            _enemyScript.SetInversion();
         }
     }
 
