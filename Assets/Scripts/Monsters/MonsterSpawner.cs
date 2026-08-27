@@ -19,7 +19,8 @@ public class MonsterSpawner : MonoBehaviour
             if(child == transform)
                 continue;
 
-            Instantiate(monsterPrefab, child.position, Quaternion.identity);
+            
+            rm.enemies.Add(Instantiate(monsterPrefab, child.position, Quaternion.identity));
             monstersSpawned++;
 
             if(--monsterNum <= 0)

@@ -69,12 +69,10 @@ public class EnemyAI : MonoBehaviour
         //randomly decides if monster is inversed or not
         if(rm.inRoomWithWater)
         {
-            Debug.Log("I think that this room has water");
             isInversed = Random.value < 0.5f;
         } 
         else
         {
-            Debug.Log("I don't see any water");
             isInversed = false;
         }
 
@@ -117,7 +115,7 @@ public class EnemyAI : MonoBehaviour
 
     public bool CanSeePlayer()
     {
-        if (player == null)
+        if (player == null || player.GetComponent<SimplePlayerController>()._isInvis)
         {
             return false;
         }
