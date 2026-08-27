@@ -19,10 +19,17 @@ public class RoomManager : MonoBehaviour
     public InputAction killEnemyDebug;
     public InputAction newRoomDebug;
 
+    public GameObject UIManager;
+
     public void Invert()
     {
         Debug.Log("Inverse Triggered!");
-
+        if (UIManager != null)
+        {
+            UIManager _UIScript = UIManager.GetComponent<UIManager>();
+            _UIScript.FlipWorld();
+        }
+        else {Debug.LogError("Room Manager Can't find UI Manager");};
         foreach (GameObject enemy in enemies)
         {
             EnemyAI _enemyScript = enemy.GetComponent<EnemyAI>();

@@ -6,7 +6,7 @@ public class FlipInecator : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        flip_indecator.SetActive(false);
+        //flip_indecator.SetActive(false);
     }
 
     // Update is called once per frame
