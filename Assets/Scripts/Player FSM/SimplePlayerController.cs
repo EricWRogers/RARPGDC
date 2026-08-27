@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public enum ActionSkill
@@ -53,6 +54,8 @@ public class SimplePlayerController: MonoBehaviour, InputSystem_Actions.IPlayerA
     public InputAction plusHP;
     public InputAction instantDeath;
     public InputAction actionSkill;
+    public InputAction resetLevel;
+    public InputAction quitApplication;
     public Slider aSkillCoolDownSlider;
     public float dashDistance = 2f;
     public float dashDuration = 0.2f;
@@ -117,6 +120,8 @@ public class SimplePlayerController: MonoBehaviour, InputSystem_Actions.IPlayerA
         plusHP.Enable();
         instantDeath.Enable();
         actionSkill.Enable();
+        resetLevel.Enable();
+        quitApplication.Enable();
 
         GameOverScreen.SetActive(false);
 
@@ -162,6 +167,21 @@ public class SimplePlayerController: MonoBehaviour, InputSystem_Actions.IPlayerA
         if (actionSkill.WasPressedThisFrame())
         {
             HandleActionSkill();
+        }
+
+        if (resetLevel.WasReleasedThisFrame())
+        {
+            SceneManager.LoadScene(0);
+        }
+
+        if (quitApplication.WasPressedThisFrame())
+        {
+            Debug.Log("quitting application");
+            #if UNITY_EDITOR
+            UnityEditor.EditorApplication.ExitPlaymode();
+            #else
+            Application.Quit();
+            #endif
         }
 
         if (_isInvis)

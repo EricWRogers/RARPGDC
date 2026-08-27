@@ -1,12 +1,12 @@
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class WeaponSelectionPROTO : MonoBehaviour
 {
     public GameObject _mainMenu;
     public GameObject player;
     private SimplePlayerController playerScript; 
-    public Text abilityText;
+    public TMP_Text abilityText;
     //ability images
     public GameObject dashImg;
     public GameObject chargeImg;
@@ -21,10 +21,13 @@ public class WeaponSelectionPROTO : MonoBehaviour
     //public string sword, spear, mace;
     void Start()
     {
+        playerScript = FindFirstObjectByType<SimplePlayerController>();
         player = GameObject.FindGameObjectWithTag("Player");
         _mainMenu.SetActive(true);
         Time.timeScale = 0;
 
+        ChangeAbilityText();
+        
         //_swordBtn.onClick.AddListener(WeaponChosen);
         //_spearBtn.onClick.AddListener(WeaponChosen);
         //_maceBtn.onClick.AddListener(WeaponChosen);
@@ -65,7 +68,7 @@ public class WeaponSelectionPROTO : MonoBehaviour
 
         childWeapon.name = "Weapon";
 
-        playerScript = player.GetComponent<SimplePlayerController>();
+        
         playerScript.weapon = childWeapon;
         playerScript.weaponScript = childWeapon.GetComponent<Weapon>();
 

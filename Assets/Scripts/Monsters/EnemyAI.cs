@@ -170,7 +170,7 @@ public class EnemyAI : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        health -= Attack.damage;
+        health -= damage;
         SetStateColor(Color.red);
         ChangeState(Stun);
 

@@ -17,6 +17,9 @@ public class Fireball : MonoBehaviour
                 GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Weapon>().damage);
         }
 
+        if(other.CompareTag("Enemy") && other.GetComponent<EnemyAI>().isInversed)
+            return;
+
         if(!other.GetComponentInChildren<SimplePlayerController>() && !other.GetComponentInParent<SimplePlayerController>() && !other.CompareTag("water"))
             Destroy(gameObject);
     }
