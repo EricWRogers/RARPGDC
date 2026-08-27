@@ -2,14 +2,15 @@ using UnityEngine;
 using DG.Tweening;
 using System.Collections.Generic;
 
+public enum WeaponType
+{
+    Spear,
+    Fireball,
+    Mace
+}
+
 public class Weapon : MonoBehaviour
 {
-    public enum WeaponType
-    {
-        Spear,
-        Fireball,
-        Mace
-    }
 
     public WeaponType myType;
     public int damage;

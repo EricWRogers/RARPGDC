@@ -246,12 +246,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1877305089fdc514c85fd9fb4bd95fa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SimplePlayer
+  myASkill: 0
   speed: 10
   controller: {fileID: 7715256816439548438}
-  maxHealth: 10
+  aimingDisabled: 0
   health: 0
+  GameOverScreen: {fileID: 0}
   weapon: {fileID: 0}
   weaponScript: {fileID: 0}
+  sprite: {fileID: 0}
   minusHP:
     m_Name: Minus HP
     m_Type: 0
@@ -306,6 +309,26 @@ MonoBehaviour:
       m_Flags: 0
     m_Flags: 0
     m_Priority: 0
+  actionSkill:
+    m_Name: Action Skill
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 1d8fd693-b61d-40f7-a717-3a50f7495a66
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: b76f1b7f-2996-4bdd-a657-adfbdef05ce0
+      m_Path: <Keyboard>/leftShift
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Action Skill
+      m_Flags: 0
+    m_Flags: 0
+    m_Priority: 0
+  dashDistance: 3
+  dashDuration: 0.2
 --- !u!114 &4769269466461886191
 MonoBehaviour:
   m_ObjectHideFlags: 0
