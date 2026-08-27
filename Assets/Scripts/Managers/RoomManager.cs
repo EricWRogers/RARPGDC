@@ -27,6 +27,7 @@ public class RoomManager : MonoBehaviour
         {
             EnemyAI _enemyScript = enemy.GetComponent<EnemyAI>();
             _enemyScript.isInversed = !_enemyScript.isInversed;
+            _enemyScript.SetInversion();
         }
     }
 
