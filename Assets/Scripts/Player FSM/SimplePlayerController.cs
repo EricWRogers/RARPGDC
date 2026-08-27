@@ -169,7 +169,7 @@ public class SimplePlayerController: MonoBehaviour, InputSystem_Actions.IPlayerA
             HandleActionSkill();
         }
 
-        if (resetLevel.WasPressedThisFrame())
+        if (resetLevel.WasReleasedThisFrame())
         {
             SceneManager.LoadScene(0);
         }
