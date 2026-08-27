@@ -86,7 +86,9 @@ public class SimplePlayerController: MonoBehaviour, InputSystem_Actions.IPlayerA
 
     void Awake()
     {
-        myASkill = (ActionSkill)Random.Range(1, 4);
+        // TEMP
+        // myASkill = (ActionSkill)Random.Range(1, 4);
+        myASkill = ActionSkill.Dash;
         health = maxHealth;
     }
     void Start()
