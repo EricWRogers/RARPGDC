@@ -144,6 +144,10 @@ MonoBehaviour:
   playerGO: {fileID: 0}
   stunTimer: 0.8
   bloodSplatter: {fileID: 6991919705033840421, guid: caee58ce338aa4e1099352996f0cfd5c, type: 3}
+  lungeAmount: 2
+  tiltAmount: 50
+  tiltBackTime: 0.5
+  tiltForwardTime: 3
 --- !u!195 &1561786101581237049
 NavMeshAgent:
   m_ObjectHideFlags: 0

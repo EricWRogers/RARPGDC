@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -32,6 +33,10 @@ public class EnemyAI : MonoBehaviour
 
     [Header("Player feedback")]
     public GameObject bloodSplatter;
+    public float lungeAmount;
+    public float tiltAmount;
+    public float tiltBackTime;
+    public float tiltForwardTime;
 
     public Vector3 LastKnownPosition { get; set; }
     public ChaseState Chase { get; private set; }
@@ -152,7 +157,7 @@ public class EnemyAI : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        health -= damage;
+        health -= Attack.damage;
         SetStateColor(Color.red);
         ChangeState(Stun);
 
@@ -182,5 +187,51 @@ public class EnemyAI : MonoBehaviour
             col.enabled = false;
         else
             col.enabled = true;
+    }
+
+    protected IEnumerator MonsterIsAttacking()
+    {
+        Debug.Log("IEnum bby");
+        Vector3 originalPosition = transform.localPosition;
+        Quaternion originalRotation = transform.localRotation;
+
+        Vector3 lungeTarget = originalPosition + transform.forward *  lungeAmount;
+        Quaternion tiltTarget = originalRotation * Quaternion.Euler( tiltAmount, 0f, 0f);
+
+        Attack.damage = Random.Range(1, 2);
+         SetStateColor(Color.pink);
+ 
+        float elapsed = 0f;
+
+        while (elapsed <  tiltBackTime)
+        {
+            elapsed += Time.deltaTime;
+            float percent = elapsed /  tiltBackTime;
+
+            transform.localPosition = Vector3.Lerp(originalPosition, lungeTarget, percent);
+            transform.localRotation = Quaternion.Slerp(tiltTarget, originalRotation, percent);
+            yield return null;
+        }
+
+        Attack.playerScript.TakeDamage(Attack.damage);
+        Debug.Log("Monster strikes for " + Attack.damage + " damage.");
+
+        yield return new WaitForSeconds(0.1f);
+        elapsed = 0f;
+        Vector3 positionAtHit = transform.localPosition;
+
+        while (elapsed < tiltForwardTime)
+        {
+            elapsed += Time.deltaTime;
+            float percent = elapsed / tiltForwardTime;
+
+            transform.localPosition = Vector3.Lerp(positionAtHit, originalPosition, percent);
+            yield return null;
+        }
+    }
+
+    public void AttackFunction()
+    {
+        StartCoroutine(MonsterIsAttacking());
     }
 }
