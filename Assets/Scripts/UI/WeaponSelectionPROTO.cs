@@ -25,6 +25,8 @@ public class WeaponSelectionPROTO : MonoBehaviour
         _mainMenu.SetActive(true);
         Time.timeScale = 0;
 
+        ChangeAbilityText();
+        
         //_swordBtn.onClick.AddListener(WeaponChosen);
         //_spearBtn.onClick.AddListener(WeaponChosen);
         //_maceBtn.onClick.AddListener(WeaponChosen);
