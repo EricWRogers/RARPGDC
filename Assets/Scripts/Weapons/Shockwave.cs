@@ -19,7 +19,7 @@ public class Shockwave : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
-        if (!other.CompareTag("Enemy")) return;
+        if (!other.CompareTag("Enemy") || other.GetComponent<EnemyAI>().isInversed) return;
 
         EnemyAI enemy = other.GetComponentInParent<EnemyAI>();
         if (enemy == null || !enemiesHit.Add(enemy)) return;
