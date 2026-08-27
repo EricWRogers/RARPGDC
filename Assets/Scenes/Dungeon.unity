@@ -628,7 +628,7 @@ MonoBehaviour:
   cam: {fileID: 330585543}
   camSpawnPoint: {fileID: 66887204}
   rooms:
-  - {fileID: 1972487513144767384, guid: e939fda0ec7a1934dbb35def5c96b2ad, type: 3}
+  - {fileID: 6375797228921019970, guid: 3aa9eca125d9c894d80d3c45cba80671, type: 3}
   - {fileID: 1219257980228737747, guid: 6676011d6f32662469795e478e0129bf, type: 3}
   - {fileID: 4596121746304374011, guid: abc04e99f5c3e634babdebb3a1045454, type: 3}
   - {fileID: 6029994922071299850, guid: 82af5be94c590b448a10048f8a144dad, type: 3}
