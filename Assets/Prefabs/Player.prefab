@@ -247,13 +247,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SimplePlayer
   myASkill: 0
+  rm: {fileID: 0}
   speed: 10
+  _isInvis: 0
   controller: {fileID: 7715256816439548438}
   aimingDisabled: 0
   health: 0
   GameOverScreen: {fileID: 0}
   weapon: {fileID: 0}
   weaponScript: {fileID: 0}
+  isNearWater: 0
   sprite: {fileID: 0}
   minusHP:
     m_Name: Minus HP
@@ -327,8 +330,34 @@ MonoBehaviour:
       m_Flags: 0
     m_Flags: 0
     m_Priority: 0
+  resetLevel:
+    m_Name: Reset Level
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 1b304fa5-a8ae-46c4-b323-23882f9ce9d8
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: fe79a929-1832-48d9-9c72-9015b906ec93
+      m_Path: <Keyboard>/#(R)
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Reset Level
+      m_Flags: 0
+    m_Flags: 0
+    m_Priority: 0
+  aSkillCoolDownSlider: {fileID: 0}
   dashDistance: 3
   dashDuration: 0.2
+  dashCooldown: 0.5
+  dashCollisionBuffer: 0.05
+  chargeDistance: 5
+  chargeDuration: 0.4
+  chargeCooldown: 1.5
+  invisCooldown: 5
+  invisTimer: 3
 --- !u!114 &4769269466461886191
 MonoBehaviour:
   m_ObjectHideFlags: 0

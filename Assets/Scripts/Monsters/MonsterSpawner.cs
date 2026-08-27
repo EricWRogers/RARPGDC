@@ -5,12 +5,13 @@ public class MonsterSpawner : MonoBehaviour
     public GameObject monsterPrefab;
     public RoomManager rm;
     public int maxMonsters = 3;
+    public int minMonsters = 1;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rm = FindFirstObjectByType<RoomManager>();
 
-        int monsterNum = Random.Range(1, maxMonsters + 1);
+        int monsterNum = Random.Range(minMonsters, maxMonsters + 1);
         int monstersSpawned = 0;
 
         foreach(Transform child in transform.GetComponentsInChildren<Transform>())
