@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
+    public RoomManager rm;
+
     [Header("Detection settings")]
     public Transform player { get; private set; }
     public float sightRange = 8f;     
@@ -47,6 +49,8 @@ public class EnemyAI : MonoBehaviour
 
     void Awake()
     {
+        rm = FindFirstObjectByType<RoomManager>();
+
         maxhealth = Random.Range(6, 9);
         health = maxhealth;
 
@@ -61,7 +65,8 @@ public class EnemyAI : MonoBehaviour
         }
 
         //randomly decides if monster is inversed or not
-        isInversed = Random.value < 0.5f;
+        if(rm.inRoomWithWater)
+            isInversed = Random.value < 0.5f;
 
         Agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
 

@@ -14,6 +14,7 @@ public class RoomManager : MonoBehaviour
     public List<GameObject> enemies;
     public int enemiesLeft;
     private int roomOffset = 0;
+    public bool inRoomWithWater = false;
 
     public InputAction killEnemyDebug;
     public InputAction newRoomDebug;
@@ -59,8 +60,9 @@ public class RoomManager : MonoBehaviour
     // Randomly choose new room, place player at spawn, move camera, remove spawn marker, count enemies, destroy current door, find new door 
     public void NewRoom()
     {
-
-        GameObject newRoom = Instantiate(rooms[Random.Range(0, rooms.Count)], new Vector3(roomOffset += 60, 0, 0), Quaternion.identity);
+        GameObject nextRoom = rooms[Random.Range(0, rooms.Count)];
+        if(nextRoom.name != "Room1Prefab") inRoomWithWater = true;
+        GameObject newRoom = Instantiate(nextRoom, new Vector3(roomOffset += 60, 0, 0), Quaternion.identity);
         camSpawnPoint = newRoom.GetComponentInChildren<CamSpawnPoint>()?.gameObject;
         playerSpawnPoint = newRoom.GetComponentInChildren<PlayerSpawnPoint>(true)?.gameObject;
         currentDoor = newRoom.GetComponentInChildren<CurrentDoor>(true)?.gameObject;
